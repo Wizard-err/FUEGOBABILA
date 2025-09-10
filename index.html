@@ -1,186 +1,174 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Legaliza Verdinha 🍃</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-    body{
-      margin:0;
-      font-family:'Press Start 2P', cursive;
-      background:linear-gradient(270deg,#00ff87,#60efff,#ff6ec7,#ffde59);
-      background-size:800% 800%;
-      animation:gradientBG 25s ease infinite;
-      color:white;
-      overflow-x:hidden;
-      text-align:center;
-    }
-    @keyframes gradientBG{
-      0%{background-position:0% 50%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 50%}
-    }
-    header{
-      padding:40px 20px;
-      animation:pulse 3s infinite;
-    }
-    @keyframes pulse{
-      0%,100%{transform:scale(1)}
-      50%{transform:scale(1.1)}
-    }
-    h1{
-      font-size:32px;
-      text-shadow:0 0 10px #0f0,0 0 20px #f0f,0 0 40px #ff0;
-    }
-    p{
-      font-size:14px;
-    }
-    .smoke{
-      position:fixed;
-      top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;
-    }
-    .smoke span{
-      position:absolute;
-      bottom:-100px;
-      width:40px;height:40px;
-      background:rgba(255,255,255,0.15);
-      border-radius:50%;
-      animation:rise 12s linear infinite;
-    }
-    @keyframes rise{
-      0%{transform:translateY(0) scale(1);opacity:0.4}
-      50%{opacity:0.8}
-      100%{transform:translateY(-120vh) scale(2);opacity:0}
-    }
-    .card{
-      background:rgba(0,0,0,0.6);
-      margin:20px auto;
-      max-width:700px;
-      padding:20px;
-      border-radius:20px;
-      box-shadow:0 0 20px rgba(0,0,0,0.8);
-      animation:fadeIn 2s ease;
-    }
-    @keyframes fadeIn{
-      from{opacity:0;transform:translateY(20px)}
-      to{opacity:1;transform:translateY(0)}
-    }
-    button{
-      background:#0f0;
-      border:none;
-      padding:10px 20px;
-      border-radius:12px;
-      cursor:pointer;
-      font-family:'Press Start 2P', cursive;
-      font-size:12px;
-      color:#000;
-      box-shadow:0 0 10px #0f0,0 0 20px #ff0;
-      transition:transform 0.2s;
-      margin:10px;
-    }
-    button:hover{transform:scale(1.2) rotate(-3deg)}
-    footer{
-      margin:40px 0;
-      font-size:10px;
-    }
-    .leaf{
-      position:fixed;
-      top:-50px;
-      width:40px;height:40px;
-      background:url('https://cdn-icons-png.flaticon.com/512/415/415733.png') no-repeat center/contain;
-      animation:fall linear infinite;
-      pointer-events:none;
-    }
-    @keyframes fall{
-      0%{transform:translateY(0) rotate(0)}
-      100%{transform:translateY(110vh) rotate(360deg)}
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agência de Viagens Virtual ✈️</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+  body {
+    margin:0;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom, #87ceeb 0%, #f0f8ff 100%);
+    overflow-x: hidden;
+  }
+  header {
+    text-align:center;
+    padding:40px 20px;
+    background: rgba(0,0,0,0.05);
+    position: relative;
+  }
+  header h1 {
+    font-size: 32px;
+    color: #003366;
+    text-shadow: 1px 1px 2px #fff;
+  }
+  .cloud {
+    position:absolute;
+    background: #fff;
+    border-radius:50%;
+    opacity:0.8;
+  }
+  .cloud1{width:120px;height:60px;top:30px;left:-150px;animation:cloudMove 60s linear infinite;}
+  .cloud2{width:180px;height:90px;top:80px;left:-250px;animation:cloudMove 90s linear infinite;}
+  @keyframes cloudMove{
+    0%{transform: translateX(0);}
+    100%{transform: translateX(120vw);}
+  }
+  .hero {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    padding:20px;
+  }
+  .card {
+    background: rgba(255,255,255,0.85);
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+  }
+  .card:hover {transform: translateY(-10px);}
+  .card img {
+    width:100%;
+    border-radius:12px;
+  }
+  .card h3 {
+    margin:12px 0 6px;
+    color:#003366;
+  }
+  .card p {font-size:14px; color:#333;}
+  button {
+    background:#ff6600;
+    border:none;
+    padding:10px 18px;
+    color:#fff;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:700;
+    transition: transform 0.2s, background 0.3s;
+  }
+  button:hover {transform: scale(1.1); background:#e65c00;}
+  #formModal {
+    display:none;
+    position:fixed;
+    inset:0;
+    background: rgba(0,0,0,0.5);
+    justify-content:center;
+    align-items:center;
+  }
+  #formModal .modalContent {
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+    max-width:400px;
+    width:90%;
+    text-align:left;
+  }
+  #formModal input, #formModal select {
+    width:100%;
+    padding:8px;
+    margin:6px 0;
+    border-radius:6px;
+    border:1px solid #ccc;
+  }
+  footer {
+    text-align:center;
+    padding:20px;
+    color:#003366;
+    font-size:12px;
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>🍁 Legaliza Verdinha 🍁</h1>
-    <p>Um site que mistura diversão, viagem psicodélica e informação 🌿</p>
-  </header>
 
+<header>
+  <h1>Agência Virtual de Viagens ✈️</h1>
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+</header>
+
+<section class="hero">
   <div class="card">
-    <h2>Por que legalizar?</h2>
-    <p>Economia bombando 💸, saúde controlada 🏥, menos cadeia lotada 🚔... Plante essa ideia! 🌱</p>
-    <button onclick="chapar()">Clique e chapar na informação</button>
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=60" alt="Praia">
+    <h3>Rio de Janeiro</h3>
+    <p>Praias incríveis, Cristo Redentor e carnaval animado. Experiência única no Brasil!</p>
+    <button onclick="openForm('Rio de Janeiro')">Quero viajar!</button>
   </div>
-
   <div class="card">
-    <h2>Trocadilhos do dia</h2>
-    <p id="trocadilho">Carregando...</p>
-    <button onclick="novoTrocadilho()">Outro baseado de piada</button>
+    <img src="https://images.unsplash.com/photo-1569584000472-1a8c7c1b70dc?auto=format&fit=crop&w=800&q=60" alt="Paris">
+    <h3>Paris</h3>
+    <p>Torre Eiffel, museus e culinária que encantam. Romance e cultura na França.</p>
+    <button onclick="openForm('Paris')">Quero viajar!</button>
   </div>
-
   <div class="card">
-    <h2>Informações sérias também</h2>
-    <p><strong>Medicinal:</strong> usado em tratamentos de dor crônica, epilepsia e ansiedade.</p>
-    <p><strong>Economia:</strong> em países onde é legalizado, gera bilhões em impostos e empregos.</p>
-    <p><strong>Riscos:</strong> uso excessivo pode afetar memória, atenção e saúde mental.</p>
-    <button onclick="modoViagem()">Ativar Modo Viagem 🌌</button>
+    <img src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?auto=format&fit=crop&w=800&q=60" alt="Tóquio">
+    <h3>Tóquio</h3>
+    <p>Tecnologia, tradição e gastronomia japonesa. Uma viagem que mistura passado e futuro.</p>
+    <button onclick="openForm('Tóquio')">Quero viajar!</button>
   </div>
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1526481280694-3a5b39fdb8e8?auto=format&fit=crop&w=800&q=60" alt="Sydney">
+    <h3>Sydney</h3>
+    <p>Opera House, praias e aventura. Descubra a Austrália de uma forma inesquecível.</p>
+    <button onclick="openForm('Sydney')">Quero viajar!</button>
+  </div>
+</section>
 
-  <footer>
-    <p>Feito com amor, fumaça e código ✨</p>
-  </footer>
+<div id="formModal">
+  <div class="modalContent">
+    <h2>Reservar viagem para <span id="destinoSelecionado"></span></h2>
+    <form onsubmit="submitForm(event)">
+      <label>Nome:</label>
+      <input type="text" name="nome" required>
+      <label>Email:</label>
+      <input type="email" name="email" required>
+      <label>Data da viagem:</label>
+      <input type="date" name="data" required>
+      <button type="submit">Enviar Pedido</button>
+      <button type="button" onclick="closeForm()" style="background:#888;margin-top:6px;">Cancelar</button>
+    </form>
+  </div>
+</div>
 
-  <div class="smoke"></div>
+<footer>
+  &copy; 2025 Agência Virtual de Viagens | Projeto Educativo
+</footer>
 
-  <script>
-    function chapar(){
-      alert('Já chapou de informação hoje? 🤯🍀');
-    }
+<script>
+function openForm(destino){
+  document.getElementById('destinoSelecionado').innerText = destino;
+  document.getElementById('formModal').style.display = 'flex';
+}
+function closeForm(){
+  document.getElementById('formModal').style.display = 'none';
+}
+function submitForm(e){
+  e.preventDefault();
+  alert('Pedido enviado com sucesso! ✈️ Obrigado por reservar sua viagem.');
+  closeForm();
+}
+</script>
 
-    const trocadilhos=[
-      'Não queima largada, queima verdinha! 🔥',
-      'Se a vida tá cinza, acende a cor! 🌈',
-      'Plante amor, colha paz... e talvez uns baseados. ✌️',
-      'Economia verde de verdade! 💸🍃',
-      'Enquanto uns fumam problema, a gente sopra solução! 💨'
-    ];
-
-    function novoTrocadilho(){
-      document.getElementById('trocadilho').innerText=trocadilhos[Math.floor(Math.random()*trocadilhos.length)];
-    }
-
-    novoTrocadilho();
-
-    // criar fumaça animada
-    const smoke=document.querySelector('.smoke');
-    for(let i=0;i<25;i++){
-      const s=document.createElement('span');
-      s.style.left=Math.random()*100+'%';
-      s.style.animationDuration=5+Math.random()*10+'s';
-      s.style.width=s.style.height=20+Math.random()*40+'px';
-      smoke.appendChild(s);
-    }
-
-    // folhas caindo
-    function criarFolha(){
-      const leaf=document.createElement('div');
-      leaf.className='leaf';
-      leaf.style.left=Math.random()*100+'%';
-      leaf.style.animationDuration=5+Math.random()*10+'s';
-      document.body.appendChild(leaf);
-      setTimeout(()=>leaf.remove(),12000);
-    }
-    setInterval(criarFolha,1000);
-
-    // modo viagem
-    let viagemAtiva=false;
-    function modoViagem(){
-      if(!viagemAtiva){
-        document.body.style.filter='hue-rotate(180deg) saturate(2)';
-        viagemAtiva=true;
-      } else {
-        document.body.style.filter='none';
-        viagemAtiva=false;
-      }
-    }
-  </script>
 </body>
 </html>
