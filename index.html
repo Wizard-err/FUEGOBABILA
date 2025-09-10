@@ -3,203 +3,184 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Legaliza Verdinha — Oficial 🍃</title>
-  <meta name="description" content="Site interativo e informativo sobre cannabis: história, usos medicinais, riscos, economia e ativismo." />
+  <title>Legaliza Verdinha 🍃</title>
   <style>
-    /* Reset e fontes */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&family=Press+Start+2P&display=swap');
-    :root{--bg1:#08121b;--card:rgba(255,255,255,0.04);--accent:#10b981;--accent-2:#7c3aed;--muted:#9aa8b2}
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial;background:radial-gradient(ellipse at 20% 10%, rgba(16,185,129,0.08), transparent 10%),linear-gradient(180deg,#001219,#06121a);color:#e6f0ea}
-    a{color:var(--accent)}
-
-    /* Layout */
-    .wrap{max-width:1100px;margin:28px auto;padding:20px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:800;font-family:'Press Start 2P';box-shadow:0 10px 30px rgba(12,34,22,0.6)}
-    nav{display:flex;gap:12px;align-items:center}
-    nav button{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;color:inherit;cursor:pointer}
-    .status{font-size:12px;color:var(--muted)}
-
-    /* Hero */
-    .hero{margin-top:24px;display:grid;grid-template-columns:1fr 380px;gap:20px}
-    .card{background:var(--card);padding:18px;border-radius:14px;backdrop-filter:blur(4px);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
-    h1{margin:0;font-size:28px;text-shadow:0 2px 20px rgba(124,58,237,0.12)}
-    .lead{color:var(--muted);margin-top:8px}
-
-    /* Buttons */
-    .btn{display:inline-block;padding:10px 14px;border-radius:12px;font-weight:700;cursor:pointer;border:none}
-    .btn-green{background:linear-gradient(90deg,#34d399,#10b981);color:#022;box-shadow:0 6px 20px rgba(16,185,129,0.18)}
-    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
-
-    /* Sections */
-    section{margin-top:18px}
-    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-    .info-list{list-style:none;padding:0;margin:0}
-    .info-list li{padding:10px;border-radius:8px;background:rgba(255,255,255,0.01);margin-bottom:8px}
-
-    /* Floating smoke canvas */
-    #smokeCanvas{position:fixed;right:0;bottom:0;left:0;top:0;pointer-events:none;mix-blend-mode:screen;opacity:0.55}
-
-    /* Falling leaves (game) */
-    #gameArea{height:220px;overflow:hidden;border-radius:10px;background:linear-gradient(180deg, rgba(16,24,24,0.2), rgba(0,0,0,0.2));position:relative}
-    .leaf{position:absolute;width:40px;height:40px;background-image:radial-gradient(circle at 30% 30%, #16a34a,#15803d);border-radius:6px;transform-origin:center}
-    .score{position:absolute;right:12px;top:12px;background:rgba(0,0,0,0.35);padding:6px 10px;border-radius:8px}
-
-    /* Typing effect */
-    .typewriter{font-family:Inter,monospace;color:#e6f0ea;font-weight:600}
-
-    /* Modal */
-    .modal{position:fixed;inset:0;background:rgba(2,6,23,0.6);display:flex;align-items:center;justify-content:center;visibility:hidden;opacity:0;transition:all .2s}
-    .modal.open{visibility:visible;opacity:1}
-    .modal .box{background:#04121a;padding:18px;border-radius:12px;max-width:760px}
-
-    /* Responsive */
-    @media(max-width:980px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    body{
+      margin:0;
+      font-family:'Press Start 2P', cursive;
+      background:linear-gradient(270deg,#00ff87,#60efff,#ff6ec7,#ffde59);
+      background-size:800% 800%;
+      animation:gradientBG 25s ease infinite;
+      color:white;
+      overflow-x:hidden;
+      text-align:center;
+    }
+    @keyframes gradientBG{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+    header{
+      padding:40px 20px;
+      animation:pulse 3s infinite;
+    }
+    @keyframes pulse{
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.1)}
+    }
+    h1{
+      font-size:32px;
+      text-shadow:0 0 10px #0f0,0 0 20px #f0f,0 0 40px #ff0;
+    }
+    p{
+      font-size:14px;
+    }
+    .smoke{
+      position:fixed;
+      top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;
+    }
+    .smoke span{
+      position:absolute;
+      bottom:-100px;
+      width:40px;height:40px;
+      background:rgba(255,255,255,0.15);
+      border-radius:50%;
+      animation:rise 12s linear infinite;
+    }
+    @keyframes rise{
+      0%{transform:translateY(0) scale(1);opacity:0.4}
+      50%{opacity:0.8}
+      100%{transform:translateY(-120vh) scale(2);opacity:0}
+    }
+    .card{
+      background:rgba(0,0,0,0.6);
+      margin:20px auto;
+      max-width:700px;
+      padding:20px;
+      border-radius:20px;
+      box-shadow:0 0 20px rgba(0,0,0,0.8);
+      animation:fadeIn 2s ease;
+    }
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(20px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    button{
+      background:#0f0;
+      border:none;
+      padding:10px 20px;
+      border-radius:12px;
+      cursor:pointer;
+      font-family:'Press Start 2P', cursive;
+      font-size:12px;
+      color:#000;
+      box-shadow:0 0 10px #0f0,0 0 20px #ff0;
+      transition:transform 0.2s;
+      margin:10px;
+    }
+    button:hover{transform:scale(1.2) rotate(-3deg)}
+    footer{
+      margin:40px 0;
+      font-size:10px;
+    }
+    .leaf{
+      position:fixed;
+      top:-50px;
+      width:40px;height:40px;
+      background:url('https://cdn-icons-png.flaticon.com/512/415/415733.png') no-repeat center/contain;
+      animation:fall linear infinite;
+      pointer-events:none;
+    }
+    @keyframes fall{
+      0%{transform:translateY(0) rotate(0)}
+      100%{transform:translateY(110vh) rotate(360deg)}
+    }
   </style>
 </head>
 <body>
-  <canvas id="smokeCanvas"></canvas>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo">LV</div>
-        <div>
-          <h1>Legaliza Verdinha 🍃</h1>
-          <div class="status">Informação, zoeira e ativismo responsável</div>
-        </div>
-      </div>
-      <nav>
-        <button onclick="toggleTrip()">Modo Viagem</button>
-        <button onclick="openModal()">Sobre</button>
-        <button class="btn btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contato</button>
-      </nav>
-    </header>
+  <header>
+    <h1>🍁 Legaliza Verdinha 🍁</h1>
+    <p>Um site que mistura diversão, viagem psicodélica e informação 🌿</p>
+  </header>
 
-    <div class="hero">
-      <div class="card">
-        <p class="lead">Um hub interativo sobre <strong>cannabis</strong>: história, usos medicinais, riscos, economia e como participar do debate público — com humor.</p>
-
-        <section>
-          <h3>Mini-jogo: Pegue as folhas</h3>
-          <div id="gameArea">
-            <div class="score">Pontos: <span id="score">0</span></div>
-          </div>
-          <div style="margin-top:10px">
-            <button class="btn btn-green" onclick="startGame()">Começar jogo</button>
-            <button class="btn btn-ghost" onclick="stopGame()">Parar</button>
-          </div>
-        </section>
-
-        <section>
-          <h3>Curiosidades rápidas</h3>
-          <ul class="info-list">
-            <li><strong>Medicinal:</strong> compostos da cannabis (p.ex. CBD) têm aplicação em controle de dor, epilepsia refratária e náuseas em tratamentos oncológicos — mas a prescrição e qualidade variam por país.</li>
-            <li><strong>História:</strong> plantas do gênero Cannabis têm uso documentado há milênios, tanto para fibras quanto para usos medicinais e rituais.</li>
-            <li><strong>Riscos:</strong> uso frequente pode estar associado a problemas respiratórios (quando fumada), risco aumentado de dependência em uma parcela de usuários e, em indivíduos vulneráveis, agravamento de transtornos psicóticos.</li>
-            <li><strong>Economia:</strong> mercados legalizados geram receita tributária e empregos, segundo estudos econômicos internacionais.</li>
-          </ul>
-        </section>
-
-      </div>
-
-      <aside class="card">
-        <h3>Mapa rápido</h3>
-        <p class="muted">Situação legal no Brasil e no mundo muda rápido — consulte fontes oficiais antes de agir.</p>
-
-        <section style="margin-top:10px">
-          <h4>Links úteis</h4>
-          <ul style="padding-left:18px;color:var(--muted)">
-            <li><a href="https://www.gov.br/anvisa/pt-br" target="_blank" rel="noopener">ANVISA</a></li>
-            <li><a href="https://www.who.int" target="_blank" rel="noopener">WHO — Cannabis</a></li>
-            <li><a href="https://www.cdc.gov/cannabis" target="_blank" rel="noopener">CDC — Health Effects</a></li>
-          </ul>
-        </section>
-
-      </aside>
-    </div>
-
-    <section class="card">
-      <h2>Guia completo sobre o "Verdinho"</h2>
-      <div class="grid">
-        <div>
-          <h3>História & Cultura</h3>
-          <p>Da fibra ao ritual: desde usos têxteis até cultos e medicina — a planta atravessou civilizações. A cultura popular ligada ao consumo se consolidou no século XX e virou símbolo de movimentos contraculturais.</p>
-        </div>
-
-        <div>
-          <h3>Medicinal</h3>
-          <p>Existem formulações aprovadas em vários países. O canabidiol (CBD) tem aplicações específicas; o THC é psicoativo e utilizado em indicações diferentes. A qualidade e regulamentação são críticas.</p>
-        </div>
-
-        <div>
-          <h3>Riscos e Saúde</h3>
-          <p>Uso intenso e diário tem sido ligado a problemas respiratórios se fumado, riscos cardiovasculares em estudos recentes, e maior chance de dependência para alguns usuários. Pessoas com transtornos psicóticos ou predisposição genética devem evitar o uso recreativo.</p>
-        </div>
-
-        <div>
-          <h3>Economia & Política</h3>
-          <p>Legalização cria mercados formais com tributação e empregos mas exige regulação para reduzir danos (controle de potência, marketing, vendas para menores).</p>
-        </div>
-      </div>
-
-      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:14px 0"/>
-
-      <h3 style="margin-top:8px">Quer saber mais?</h3>
-      <p class="muted">Clique em "Fonte" abaixo para abrir fontes oficiais e estudos recentes (eu já olhei e listo as principais referências no rodapé deste chat).</p>
-    </section>
-
-    <section id="contact" class="card">
-      <h2>Contato e Personalização</h2>
-      <p>Quer que eu: adicionar form de petição, integrar Google Forms, colocar contador de assinaturas (fake para demo ou conectar a uma API)? Diga o que prefere e eu adapto.</p>
-    </section>
-
-    <footer style="text-align:center;margin-top:18px;color:var(--muted)">
-      <small>Projeto para debate público — não fornece instruções de cultivo, produção ou compra. Consulte especialistas e fontes oficiais antes de qualquer ação.</small>
-    </footer>
+  <div class="card">
+    <h2>Por que legalizar?</h2>
+    <p>Economia bombando 💸, saúde controlada 🏥, menos cadeia lotada 🚔... Plante essa ideia! 🌱</p>
+    <button onclick="chapar()">Clique e chapar na informação</button>
   </div>
 
-  <!-- Modal -->
-  <div id="modal" class="modal" onclick="closeModal(event)">
-    <div class="box">
-      <h3>Sobre o projeto</h3>
-      <p>Este site é um template interativo para divulgação e debate. Inclui mini-jogo, animações em canvas, seção educativa e espaço para embeds (petições, formulários). O conteúdo informativo foi compilado de fontes públicas e científicas.</p>
-      <div style="text-align:right;margin-top:12px"><button onclick="closeModal(event)" class="btn btn-ghost">Fechar</button></div>
-    </div>
+  <div class="card">
+    <h2>Trocadilhos do dia</h2>
+    <p id="trocadilho">Carregando...</p>
+    <button onclick="novoTrocadilho()">Outro baseado de piada</button>
   </div>
+
+  <div class="card">
+    <h2>Informações sérias também</h2>
+    <p><strong>Medicinal:</strong> usado em tratamentos de dor crônica, epilepsia e ansiedade.</p>
+    <p><strong>Economia:</strong> em países onde é legalizado, gera bilhões em impostos e empregos.</p>
+    <p><strong>Riscos:</strong> uso excessivo pode afetar memória, atenção e saúde mental.</p>
+    <button onclick="modoViagem()">Ativar Modo Viagem 🌌</button>
+  </div>
+
+  <footer>
+    <p>Feito com amor, fumaça e código ✨</p>
+  </footer>
+
+  <div class="smoke"></div>
 
   <script>
-    // ---------------------- SMOKE (canvas) ----------------------
-    const canvas=document.getElementById('smokeCanvas');
-    const ctx=canvas.getContext('2d');
-    let W, H, particles=[];
-    function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
-    window.addEventListener('resize',resize);resize();
-    function rand(min,max){return Math.random()*(max-min)+min}
-    class P{constructor(){this.x=rand(0,W);this.y=H+rand(0,200);this.vx=rand(-0.2,0.2);this.vy=rand(-0.5,-1.2);this.r=rand(10,60);this.a=rand(0.02,0.1)}update(){this.x+=this.vx;this.y+=this.vy;this.r+=0.02;this.a-=0.0008}draw(){ctx.beginPath();const g=ctx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.r);g.addColorStop(0,'rgba(200,255,200,'+this.a+')');g.addColorStop(1,'rgba(120,200,150,0)');ctx.fillStyle=g;ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fill()}}
-    for(let i=0;i<20;i++)particles.push(new P());
-    function anim(){ctx.clearRect(0,0,W,H);for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.update();p.draw();if(p.a<=0){particles.splice(i,1);particles.push(new P())}}requestAnimationFrame(anim)}anim();
+    function chapar(){
+      alert('Já chapou de informação hoje? 🤯🍀');
+    }
 
-    // ---------------------- LEAF GAME ----------------------
-    let gameInterval=null, score=0;
-    const gameArea=document.getElementById('gameArea');
-    function spawnLeaf(){const leaf=document.createElement('div');leaf.className='leaf';leaf.style.left=Math.random()*90+'%';leaf.style.top='-50px';leaf.style.transform='rotate('+Math.random()*360+'deg)';leaf.addEventListener('click',()=>{score+=1;document.getElementById('score').innerText=score;leaf.remove();});gameArea.appendChild(leaf);const duration=4+Math.random()*6;const start=performance.now();function fall(t){const prog=(t-start)/ (duration*1000);leaf.style.top=prog*100+'%';leaf.style.left=(parseFloat(leaf.style.left) + Math.sin(prog*10)*6)+'%';leaf.style.transform='rotate('+prog*720+'deg)';if(prog<1)requestAnimationFrame(fall);else leaf.remove()}requestAnimationFrame(fall)}
-    function startGame(){if(gameInterval)clearInterval(gameInterval);score=0;document.getElementById('score').innerText=0;gameInterval=setInterval(spawnLeaf,700)}
-    function stopGame(){clearInterval(gameInterval);gameInterval=null}
+    const trocadilhos=[
+      'Não queima largada, queima verdinha! 🔥',
+      'Se a vida tá cinza, acende a cor! 🌈',
+      'Plante amor, colha paz... e talvez uns baseados. ✌️',
+      'Economia verde de verdade! 💸🍃',
+      'Enquanto uns fumam problema, a gente sopra solução! 💨'
+    ];
 
-    // ---------------------- MODE VIAGEM ----------------------
-    let tripping=false;function toggleTrip(){tripping=!tripping;document.body.style.transition='filter .6s';if(tripping){document.body.style.filter='hue-rotate(70deg) saturate(1.6)';document.querySelector('.logo').style.transform='scale(1.1) rotate(-6deg)'}else{document.body.style.filter='none';document.querySelector('.logo').style.transform='none'}}
+    function novoTrocadilho(){
+      document.getElementById('trocadilho').innerText=trocadilhos[Math.floor(Math.random()*trocadilhos.length)];
+    }
 
-    // ---------------------- MODAL ----------------------
-    function openModal(){document.getElementById('modal').classList.add('open')}
-    function closeModal(e){if(e.target.id==='modal' || e.type==='click'){document.getElementById('modal').classList.remove('open')}}
+    novoTrocadilho();
 
-    // ---------------------- Info typing (small) ----------------------
-    // Placeholder for future typing effect
+    // criar fumaça animada
+    const smoke=document.querySelector('.smoke');
+    for(let i=0;i<25;i++){
+      const s=document.createElement('span');
+      s.style.left=Math.random()*100+'%';
+      s.style.animationDuration=5+Math.random()*10+'s';
+      s.style.width=s.style.height=20+Math.random()*40+'px';
+      smoke.appendChild(s);
+    }
 
-    // Accessibility: stop animations on prefers-reduced-motion
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.body.style.animation='none';document.querySelectorAll('[style]').forEach(n=>n.style.animation='none')}
+    // folhas caindo
+    function criarFolha(){
+      const leaf=document.createElement('div');
+      leaf.className='leaf';
+      leaf.style.left=Math.random()*100+'%';
+      leaf.style.animationDuration=5+Math.random()*10+'s';
+      document.body.appendChild(leaf);
+      setTimeout(()=>leaf.remove(),12000);
+    }
+    setInterval(criarFolha,1000);
+
+    // modo viagem
+    let viagemAtiva=false;
+    function modoViagem(){
+      if(!viagemAtiva){
+        document.body.style.filter='hue-rotate(180deg) saturate(2)';
+        viagemAtiva=true;
+      } else {
+        document.body.style.filter='none';
+        viagemAtiva=false;
+      }
+    }
   </script>
 </body>
 </html>
