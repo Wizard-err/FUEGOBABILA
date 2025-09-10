@@ -1,83 +1,132 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Agência de Viagens Virtual ✈️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trivago Virtual 🌐</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
   body {
-    margin:0;
+    margin: 0;
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(to bottom, #87ceeb 0%, #f0f8ff 100%);
-    overflow-x: hidden;
+    background: linear-gradient(120deg,#00d4ff,#ff6ec7,#ffe259);
+    background-size: 400% 400%;
+    animation: gradientBG 20s ease infinite;
+    color: #333;
+  }
+  @keyframes gradientBG{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
   }
   header {
-    text-align:center;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(5px);
+    padding: 20px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position: sticky;
+    top:0;
+    z-index:10;
+    box-shadow:0 2px 10px rgba(0,0,0,0.2);
+  }
+  header h1{
+    margin:0;
+    font-size:24px;
+    color:#003366;
+  }
+  nav button {
+    margin-left:10px;
+    padding:8px 14px;
+    border:none;
+    border-radius:8px;
+    background:#003366;
+    color:#fff;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.2s;
+  }
+  nav button:hover {background:#0055aa; transform: scale(1.05);}
+  .search-section {
     padding:40px 20px;
-    background: rgba(0,0,0,0.05);
-    position: relative;
+    text-align:center;
   }
-  header h1 {
-    font-size: 32px;
-    color: #003366;
-    text-shadow: 1px 1px 2px #fff;
+  .search-section input, .search-section select {
+    padding:10px;
+    margin:0 6px 12px 6px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    width:150px;
   }
-  .cloud {
-    position:absolute;
-    background: #fff;
-    border-radius:50%;
-    opacity:0.8;
+  .search-section button {
+    padding:10px 18px;
+    border-radius:8px;
+    border:none;
+    background:#ff6600;
+    color:#fff;
+    cursor:pointer;
+    font-weight:700;
   }
-  .cloud1{width:120px;height:60px;top:30px;left:-150px;animation:cloudMove 60s linear infinite;}
-  .cloud2{width:180px;height:90px;top:80px;left:-250px;animation:cloudMove 90s linear infinite;}
-  @keyframes cloudMove{
-    0%{transform: translateX(0);}
-    100%{transform: translateX(120vw);}
-  }
-  .hero {
+  .search-section button:hover {background:#e65c00;}
+  .hotel-grid {
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
     gap:20px;
     padding:20px;
   }
-  .card {
+  .hotel-card {
     background: rgba(255,255,255,0.85);
     border-radius:15px;
-    padding:20px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,0.2);
     transition: transform 0.3s;
+    display:flex;
+    flex-direction:column;
   }
-  .card:hover {transform: translateY(-10px);}
-  .card img {
+  .hotel-card:hover {transform: translateY(-8px);}
+  .hotel-card img {
     width:100%;
-    border-radius:12px;
+    height:180px;
+    object-fit:cover;
   }
-  .card h3 {
-    margin:12px 0 6px;
+  .hotel-card .content {
+    padding:15px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .hotel-card h3 {
+    margin:0 0 6px 0;
     color:#003366;
   }
-  .card p {font-size:14px; color:#333;}
-  button {
-    background:#ff6600;
-    border:none;
-    padding:10px 18px;
-    color:#fff;
-    border-radius:10px;
-    cursor:pointer;
-    font-weight:700;
-    transition: transform 0.2s, background 0.3s;
+  .hotel-card p {
+    margin:0 0 10px 0;
+    font-size:14px;
+    color:#333;
   }
-  button:hover {transform: scale(1.1); background:#e65c00;}
-  #formModal {
+  .hotel-card button {
+    align-self:flex-start;
+    padding:8px 12px;
+    border:none;
+    border-radius:8px;
+    background:#00aaff;
+    color:#fff;
+    cursor:pointer;
+    transition:0.2s;
+  }
+  .hotel-card button:hover {background:#0077cc;}
+  #modal {
     display:none;
     position:fixed;
     inset:0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.6);
     justify-content:center;
     align-items:center;
+    z-index:20;
   }
-  #formModal .modalContent {
+  #modal .modal-content {
     background:#fff;
     padding:20px;
     border-radius:12px;
@@ -85,7 +134,7 @@
     width:90%;
     text-align:left;
   }
-  #formModal input, #formModal select {
+  #modal input, #modal select {
     width:100%;
     padding:8px;
     margin:6px 0;
@@ -97,78 +146,94 @@
     padding:20px;
     color:#003366;
     font-size:12px;
+    margin-top:20px;
   }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Agência Virtual de Viagens ✈️</h1>
-  <div class="cloud cloud1"></div>
-  <div class="cloud cloud2"></div>
+  <h1>Trivago Virtual 🌐</h1>
+  <nav>
+    <button onclick="scrollToSearch()">Buscar Hotéis</button>
+    <button onclick="toggleNight()">Modo Noturno 🌙</button>
+  </nav>
 </header>
 
-<section class="hero">
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=60" alt="Praia">
-    <h3>Rio de Janeiro</h3>
-    <p>Praias incríveis, Cristo Redentor e carnaval animado. Experiência única no Brasil!</p>
-    <button onclick="openForm('Rio de Janeiro')">Quero viajar!</button>
-  </div>
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1569584000472-1a8c7c1b70dc?auto=format&fit=crop&w=800&q=60" alt="Paris">
-    <h3>Paris</h3>
-    <p>Torre Eiffel, museus e culinária que encantam. Romance e cultura na França.</p>
-    <button onclick="openForm('Paris')">Quero viajar!</button>
-  </div>
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?auto=format&fit=crop&w=800&q=60" alt="Tóquio">
-    <h3>Tóquio</h3>
-    <p>Tecnologia, tradição e gastronomia japonesa. Uma viagem que mistura passado e futuro.</p>
-    <button onclick="openForm('Tóquio')">Quero viajar!</button>
-  </div>
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1526481280694-3a5b39fdb8e8?auto=format&fit=crop&w=800&q=60" alt="Sydney">
-    <h3>Sydney</h3>
-    <p>Opera House, praias e aventura. Descubra a Austrália de uma forma inesquecível.</p>
-    <button onclick="openForm('Sydney')">Quero viajar!</button>
-  </div>
+<section class="search-section" id="search">
+  <h2>Encontre seu Hotel</h2>
+  <input type="text" id="destino" placeholder="Destino">
+  <input type="date" id="checkin">
+  <input type="date" id="checkout">
+  <select id="hospedes">
+    <option value="1">1 hóspede</option>
+    <option value="2">2 hóspedes</option>
+    <option value="3">3 hóspedes</option>
+    <option value="4">4 hóspedes</option>
+  </select>
+  <button onclick="buscarHoteles()">Buscar</button>
 </section>
 
-<div id="formModal">
-  <div class="modalContent">
-    <h2>Reservar viagem para <span id="destinoSelecionado"></span></h2>
-    <form onsubmit="submitForm(event)">
+<section class="hotel-grid" id="hotelGrid">
+  <!-- Cards de hotéis serão inseridos aqui pelo JS -->
+</section>
+
+<div id="modal">
+  <div class="modal-content">
+    <h2>Reservar Hotel</h2>
+    <form onsubmit="submitReservation(event)">
       <label>Nome:</label>
       <input type="text" name="nome" required>
       <label>Email:</label>
       <input type="email" name="email" required>
-      <label>Data da viagem:</label>
-      <input type="date" name="data" required>
-      <button type="submit">Enviar Pedido</button>
-      <button type="button" onclick="closeForm()" style="background:#888;margin-top:6px;">Cancelar</button>
+      <label>Quartos:</label>
+      <input type="number" name="quartos" min="1" max="5" required>
+      <button type="submit">Enviar Reserva</button>
+      <button type="button" onclick="closeModal()" style="background:#888;margin-top:6px;">Cancelar</button>
     </form>
   </div>
 </div>
 
 <footer>
-  &copy; 2025 Agência Virtual de Viagens | Projeto Educativo
+  &copy; 2025 Trivago Virtual | Projeto Educativo
 </footer>
 
 <script>
-function openForm(destino){
-  document.getElementById('destinoSelecionado').innerText = destino;
-  document.getElementById('formModal').style.display = 'flex';
-}
-function closeForm(){
-  document.getElementById('formModal').style.display = 'none';
-}
-function submitForm(e){
-  e.preventDefault();
-  alert('Pedido enviado com sucesso! ✈️ Obrigado por reservar sua viagem.');
-  closeForm();
-}
-</script>
+// Hotéis exemplo
+const hoteis = [
+  {nome:"Hotel Sol Brilhante", cidade:"Rio de Janeiro", preco:"R$450/noite", img:"https://images.unsplash.com/photo-1576671082626-8b611d83b0e4?auto=format&fit=crop&w=800&q=60"},
+  {nome:"Paris Lux", cidade:"Paris", preco:"€120/noite", img:"https://images.unsplash.com/photo-1576673860440-0b2f1b7c8b44?auto=format&fit=crop&w=800&q=60"},
+  {nome:"Tokyo Inn", cidade:"Tóquio", preco:"¥15000/noite", img:"https://images.unsplash.com/photo-1543975200-7b4e86f86058?auto=format&fit=crop&w=800&q=60"},
+  {nome:"Sydney Paradise", cidade:"Sydney", preco:"A$200/noite", img:"https://images.unsplash.com/photo-1504308007423-56b3c5f3a3f8?auto=format&fit=crop&w=800&q=60"},
+  {nome:"Hotel Montanha Azul", cidade:"Gramado", preco:"R$350/noite", img:"https://images.unsplash.com/photo-1544025162-4e7f36d15bfa?auto=format&fit=crop&w=800&q=60"}
+];
 
-</body>
-</html>
+const hotelGrid = document.getElementById('hotelGrid');
+
+function renderHotels(lista){
+  hotelGrid.innerHTML = "";
+  lista.forEach(hotel=>{
+    const card = document.createElement('div');
+    card.className='hotel-card';
+    card.innerHTML=`<img src="${hotel.img}" alt="${hotel.nome}">
+      <div class="content">
+        <h3>${hotel.nome}</h3>
+        <p>${hotel.cidade}</p>
+        <p>${hotel.preco}</p>
+        <button onclick="openModal('${hotel.nome}')">Reservar</button>
+      </div>`;
+    hotelGrid.appendChild(card);
+  });
+}
+
+// Inicial
+renderHotels(hoteis);
+
+// Buscar hotéis
+function buscarHoteles(){
+  const destino = document.getElementById('destino').value.toLowerCase();
+  const filtrados = hoteis.filter(h => h.cidade.toLowerCase().includes(destino));
+  renderHotels(filtrados.length? filtrados : hoteis);
+}
+
+// Modal
