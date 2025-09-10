@@ -5,149 +5,150 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trivago Virtual 🌐</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-  body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(120deg,#00d4ff,#ff6ec7,#ffe259);
-    background-size: 400% 400%;
-    animation: gradientBG 20s ease infinite;
-    color: #333;
-  }
-  @keyframes gradientBG{
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-  }
-  header {
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(5px);
-    padding: 20px 40px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    position: sticky;
-    top:0;
-    z-index:10;
-    box-shadow:0 2px 10px rgba(0,0,0,0.2);
-  }
-  header h1{
-    margin:0;
-    font-size:24px;
-    color:#003366;
-  }
-  nav button {
-    margin-left:10px;
-    padding:8px 14px;
-    border:none;
-    border-radius:8px;
-    background:#003366;
-    color:#fff;
-    font-weight:700;
-    cursor:pointer;
-    transition:0.2s;
-  }
-  nav button:hover {background:#0055aa; transform: scale(1.05);}
-  .search-section {
-    padding:40px 20px;
-    text-align:center;
-  }
-  .search-section input, .search-section select {
-    padding:10px;
-    margin:0 6px 12px 6px;
-    border-radius:8px;
-    border:1px solid #ccc;
-    width:150px;
-  }
-  .search-section button {
-    padding:10px 18px;
-    border-radius:8px;
-    border:none;
-    background:#ff6600;
-    color:#fff;
-    cursor:pointer;
-    font-weight:700;
-  }
-  .search-section button:hover {background:#e65c00;}
-  .hotel-grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:20px;
-    padding:20px;
-  }
-  .hotel-card {
-    background: rgba(255,255,255,0.85);
-    border-radius:15px;
-    overflow:hidden;
-    box-shadow:0 5px 20px rgba(0,0,0,0.2);
-    transition: transform 0.3s;
-    display:flex;
-    flex-direction:column;
-  }
-  .hotel-card:hover {transform: translateY(-8px);}
-  .hotel-card img {
-    width:100%;
-    height:180px;
-    object-fit:cover;
-  }
-  .hotel-card .content {
-    padding:15px;
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-  }
-  .hotel-card h3 {
-    margin:0 0 6px 0;
-    color:#003366;
-  }
-  .hotel-card p {
-    margin:0 0 10px 0;
-    font-size:14px;
-    color:#333;
-  }
-  .hotel-card button {
-    align-self:flex-start;
-    padding:8px 12px;
-    border:none;
-    border-radius:8px;
-    background:#00aaff;
-    color:#fff;
-    cursor:pointer;
-    transition:0.2s;
-  }
-  .hotel-card button:hover {background:#0077cc;}
-  #modal {
-    display:none;
-    position:fixed;
-    inset:0;
-    background: rgba(0,0,0,0.6);
-    justify-content:center;
-    align-items:center;
-    z-index:20;
-  }
-  #modal .modal-content {
-    background:#fff;
-    padding:20px;
-    border-radius:12px;
-    max-width:400px;
-    width:90%;
-    text-align:left;
-  }
-  #modal input, #modal select {
-    width:100%;
-    padding:8px;
-    margin:6px 0;
-    border-radius:6px;
-    border:1px solid #ccc;
-  }
-  footer {
-    text-align:center;
-    padding:20px;
-    color:#003366;
-    font-size:12px;
-    margin-top:20px;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(120deg,#00d4ff,#ff6ec7,#ffe259);
+  background-size: 400% 400%;
+  animation: gradientBG 20s ease infinite;
+  color: #333;
+  transition: filter 0.5s;
+}
+@keyframes gradientBG{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+header {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(5px);
+  padding: 20px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position: sticky;
+  top:0;
+  z-index:10;
+  box-shadow:0 2px 10px rgba(0,0,0,0.2);
+}
+header h1{
+  margin:0;
+  font-size:24px;
+  color:#003366;
+}
+nav button {
+  margin-left:10px;
+  padding:8px 14px;
+  border:none;
+  border-radius:8px;
+  background:#003366;
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.2s;
+}
+nav button:hover {background:#0055aa; transform: scale(1.05);}
+.search-section {
+  padding:40px 20px;
+  text-align:center;
+}
+.search-section input, .search-section select {
+  padding:10px;
+  margin:0 6px 12px 6px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  width:150px;
+}
+.search-section button {
+  padding:10px 18px;
+  border-radius:8px;
+  border:none;
+  background:#ff6600;
+  color:#fff;
+  cursor:pointer;
+  font-weight:700;
+}
+.search-section button:hover {background:#e65c00;}
+.hotel-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+  padding:20px;
+}
+.hotel-card {
+  background: rgba(255,255,255,0.85);
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 5px 20px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+  display:flex;
+  flex-direction:column;
+}
+.hotel-card:hover {transform: translateY(-8px);}
+.hotel-card img {
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+.hotel-card .content {
+  padding:15px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.hotel-card h3 {
+  margin:0 0 6px 0;
+  color:#003366;
+}
+.hotel-card p {
+  margin:0 0 10px 0;
+  font-size:14px;
+  color:#333;
+}
+.hotel-card button {
+  align-self:flex-start;
+  padding:8px 12px;
+  border:none;
+  border-radius:8px;
+  background:#00aaff;
+  color:#fff;
+  cursor:pointer;
+  transition:0.2s;
+}
+.hotel-card button:hover {background:#0077cc;}
+#modal {
+  display:none;
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,0.6);
+  justify-content:center;
+  align-items:center;
+  z-index:20;
+}
+#modal .modal-content {
+  background:#fff;
+  padding:20px;
+  border-radius:12px;
+  max-width:400px;
+  width:90%;
+  text-align:left;
+}
+#modal input, #modal select {
+  width:100%;
+  padding:8px;
+  margin:6px 0;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+footer {
+  text-align:center;
+  padding:20px;
+  color:#003366;
+  font-size:12px;
+  margin-top:20px;
+}
 </style>
 </head>
 <body>
@@ -171,12 +172,10 @@
     <option value="3">3 hóspedes</option>
     <option value="4">4 hóspedes</option>
   </select>
-  <button onclick="buscarHoteles()">Buscar</button>
+  <button onclick="buscarHoteis()">Buscar</button>
 </section>
 
-<section class="hotel-grid" id="hotelGrid">
-  <!-- Cards de hotéis serão inseridos aqui pelo JS -->
-</section>
+<section class="hotel-grid" id="hotelGrid"></section>
 
 <div id="modal">
   <div class="modal-content">
@@ -199,7 +198,7 @@
 </footer>
 
 <script>
-// Hotéis exemplo
+// Lista de hotéis
 const hoteis = [
   {nome:"Hotel Sol Brilhante", cidade:"Rio de Janeiro", preco:"R$450/noite", img:"https://images.unsplash.com/photo-1576671082626-8b611d83b0e4?auto=format&fit=crop&w=800&q=60"},
   {nome:"Paris Lux", cidade:"Paris", preco:"€120/noite", img:"https://images.unsplash.com/photo-1576673860440-0b2f1b7c8b44?auto=format&fit=crop&w=800&q=60"},
@@ -209,6 +208,7 @@ const hoteis = [
 ];
 
 const hotelGrid = document.getElementById('hotelGrid');
+let hotelSelecionado = "";
 
 function renderHotels(lista){
   hotelGrid.innerHTML = "";
@@ -229,11 +229,39 @@ function renderHotels(lista){
 // Inicial
 renderHotels(hoteis);
 
-// Buscar hotéis
-function buscarHoteles(){
+// Busca hotéis
+function buscarHoteis(){
   const destino = document.getElementById('destino').value.toLowerCase();
   const filtrados = hoteis.filter(h => h.cidade.toLowerCase().includes(destino));
   renderHotels(filtrados.length? filtrados : hoteis);
 }
 
 // Modal
+function openModal(nome){
+  hotelSelecionado = nome;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){
+  document.getElementById('modal').style.display='none';
+}
+function submitReservation(e){
+  e.preventDefault();
+  alert(`Reserva enviada com sucesso para ${hotelSelecionado}! ✈️`);
+  closeModal();
+}
+
+// Scroll para busca
+function scrollToSearch(){
+  document.getElementById('search').scrollIntoView({behavior:'smooth'});
+}
+
+// Modo noturno
+let noite = false;
+function toggleNight(){
+  noite = !noite;
+  document.body.style.filter=noite?'invert(0.9) hue-rotate(180deg)':'none';
+}
+</script>
+
+</body>
+</html>
