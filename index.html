@@ -1,267 +1,591 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trivago Virtual 🌐</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Alugar Viagens — Pacotes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: linear-gradient(120deg,#00d4ff,#ff6ec7,#ffe259);
-  background-size: 400% 400%;
-  animation: gradientBG 20s ease infinite;
-  color: #333;
-  transition: filter 0.5s;
-}
-@keyframes gradientBG{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
-header {
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(5px);
-  padding: 20px 40px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  position: sticky;
-  top:0;
-  z-index:10;
-  box-shadow:0 2px 10px rgba(0,0,0,0.2);
-}
-header h1{
-  margin:0;
-  font-size:24px;
-  color:#003366;
-}
-nav button {
-  margin-left:10px;
-  padding:8px 14px;
-  border:none;
-  border-radius:8px;
-  background:#003366;
-  color:#fff;
-  font-weight:700;
-  cursor:pointer;
-  transition:0.2s;
-}
-nav button:hover {background:#0055aa; transform: scale(1.05);}
-.search-section {
-  padding:40px 20px;
-  text-align:center;
-}
-.search-section input, .search-section select {
-  padding:10px;
-  margin:0 6px 12px 6px;
-  border-radius:8px;
-  border:1px solid #ccc;
-  width:150px;
-}
-.search-section button {
-  padding:10px 18px;
-  border-radius:8px;
-  border:none;
-  background:#ff6600;
-  color:#fff;
-  cursor:pointer;
-  font-weight:700;
-}
-.search-section button:hover {background:#e65c00;}
-.hotel-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
-  padding:20px;
-}
-.hotel-card {
-  background: rgba(255,255,255,0.85);
-  border-radius:15px;
-  overflow:hidden;
-  box-shadow:0 5px 20px rgba(0,0,0,0.2);
-  transition: transform 0.3s;
-  display:flex;
-  flex-direction:column;
-}
-.hotel-card:hover {transform: translateY(-8px);}
-.hotel-card img {
-  width:100%;
-  height:180px;
-  object-fit:cover;
-}
-.hotel-card .content {
-  padding:15px;
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-.hotel-card h3 {
-  margin:0 0 6px 0;
-  color:#003366;
-}
-.hotel-card p {
-  margin:0 0 10px 0;
-  font-size:14px;
-  color:#333;
-}
-.hotel-card button {
-  align-self:flex-start;
-  padding:8px 12px;
-  border:none;
-  border-radius:8px;
-  background:#00aaff;
-  color:#fff;
-  cursor:pointer;
-  transition:0.2s;
-}
-.hotel-card button:hover {background:#0077cc;}
-#modal {
-  display:none;
-  position:fixed;
-  inset:0;
-  background: rgba(0,0,0,0.6);
-  justify-content:center;
-  align-items:center;
-  z-index:20;
-}
-#modal .modal-content {
-  background:#fff;
-  padding:20px;
-  border-radius:12px;
-  max-width:400px;
-  width:90%;
-  text-align:left;
-}
-#modal input, #modal select {
-  width:100%;
-  padding:8px;
-  margin:6px 0;
-  border-radius:6px;
-  border:1px solid #ccc;
-}
-footer {
-  text-align:center;
-  padding:20px;
-  color:#003366;
-  font-size:12px;
-  margin-top:20px;
-}
+  :root{
+    --blue-1: #005ea6;
+    --blue-2: #00a7d9;
+    --accent: #ffb703;
+    --bg: #f6fbff;
+    --card-shadow: 0 6px 18px rgba(2,48,84,0.08);
+    --glass: rgba(255,255,255,0.7);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family: 'Poppins', Arial, sans-serif;
+    margin:0;
+    background: linear-gradient(180deg,#f6fbff 0%, #eef9ff 60%);
+    color:#043047;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  /* Header / Nav */
+  .topbar{
+    background: linear-gradient(90deg,var(--blue-1),var(--blue-2));
+    color:white;
+    padding:18px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .logo{
+    width:56px;height:56px;border-radius:10px;
+    background:linear-gradient(135deg,#ffffff22,#ffffff11);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:20px;color:white;box-shadow:0 4px 10px rgba(0,0,0,0.08);
+  }
+  .brand h1{font-size:18px;margin:0;letter-spacing:0.2px}
+  .brand p{margin:0;font-size:12px;opacity:0.95}
+
+  nav.mainnav{display:flex;gap:18px;align-items:center}
+  nav.mainnav a{color:white;text-decoration:none;font-weight:600;opacity:0.95}
+  nav.mainnav a:hover{opacity:1;text-decoration:underline}
+
+  /* Hero / Search */
+  .hero{
+    max-width:1200px;margin:24px auto;padding:28px;border-radius:14px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.85));
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(6px);
+  }
+  .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:20px;align-items:center}
+  .hero h2{color:var(--blue-1);font-size:28px;margin:0 0 8px}
+  .hero p{margin:0 0 18px;color:#135e78}
+  .search-card{
+    border-radius:12px;padding:14px;background:linear-gradient(180deg,#ffffff,#f3fbff);
+    box-shadow:0 4px 18px rgba(2,48,84,0.06);
+  }
+  .field{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+  .field input[type="text"], .field select, .field input[type="date"], .field input[type="number"]{
+    flex:1;padding:10px 12px;border-radius:10px;border:1px solid #e6f3f9;background:white;font-size:14px;
+  }
+  .btn{
+    background: linear-gradient(90deg,var(--blue-1),var(--blue-2));
+    color:white;padding:11px 16px;border-radius:10px;border:none;font-weight:700;cursor:pointer;
+    box-shadow: 0 6px 18px rgba(0,120,180,0.12);
+  }
+  .btn.secondary{
+    background:transparent;color:var(--blue-1);border:1px solid #d7eef8;
+    box-shadow:none;font-weight:600;
+  }
+
+  /* Packages list */
+  .content{max-width:1200px;margin:20px auto;padding:0 16px}
+  .controls{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .filters{display:flex;gap:10px;align-items:center}
+  .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{
+    background:white;border-radius:12px;padding:12px;box-shadow:var(--card-shadow);overflow:hidden;
+    display:flex;flex-direction:column;transition:transform .18s, box-shadow .18s;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 14px 28px rgba(2,48,84,0.12)}
+  .card img{width:100%;height:150px;object-fit:cover;border-radius:8px}
+  .card .meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+  .tag{background:var(--blue-2);color:white;padding:6px 8px;border-radius:8px;font-weight:600;font-size:13px}
+  .price{font-weight:800;color:var(--blue-1);font-size:18px}
+  .card h3{margin:8px 0 6px;font-size:16px}
+  .card p{font-size:13px;color:#125a6f;flex:1}
+  .card .actions{display:flex;gap:8px;margin-top:12px;align-items:center}
+  .pill{background:#eef8ff;color:var(--blue-1);padding:6px 8px;border-radius:999px;font-weight:600;font-size:13px}
+
+  /* Modal */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(3,20,34,0.45);display:flex;align-items:center;justify-content:center;z-index:999;opacity:0;pointer-events:none;transition:opacity .18s}
+  .modal-backdrop.show{opacity:1;pointer-events:auto}
+  .modal{width:96%;max-width:720px;background:white;border-radius:12px;padding:18px;box-shadow:0 18px 40px rgba(2,48,84,0.2)}
+  .modal header{display:flex;justify-content:space-between;align-items:center}
+  .close{background:#f3f7fb;border:1px solid #eef6fb;border-radius:8px;padding:6px 10px;cursor:pointer}
+
+  /* Footer */
+  footer{margin-top:30px;padding:26px;background:linear-gradient(90deg,var(--blue-1),var(--blue-2));color:white;text-align:center;border-top-left-radius:12px;border-top-right-radius:12px}
+
+  /* Responsiveness */
+  @media (max-width:1000px){
+    .hero-grid{grid-template-columns:1fr}
+    .card-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:600px){
+    .card-grid{grid-template-columns:1fr}
+    nav.mainnav{display:none}
+    .topbar{padding:12px}
+    .brand h1{font-size:15px}
+    .logo{width:46px;height:46px}
+  }
 </style>
 </head>
 <body>
 
-<header>
-  <h1>Trivago Virtual 🌐</h1>
-  <nav>
-    <button onclick="scrollToSearch()">Buscar Hotéis</button>
-    <button onclick="toggleNight()">Modo Noturno 🌙</button>
-  </nav>
-</header>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">AV</div>
+      <div>
+        <h1>Alugar Viagens</h1>
+        <p>Pacotes prontos e acessíveis</p>
+      </div>
+    </div>
 
-<section class="search-section" id="search">
-  <h2>Encontre seu Hotel</h2>
-  <input type="text" id="destino" placeholder="Destino">
-  <input type="date" id="checkin">
-  <input type="date" id="checkout">
-  <select id="hospedes">
-    <option value="1">1 hóspede</option>
-    <option value="2">2 hóspedes</option>
-    <option value="3">3 hóspedes</option>
-    <option value="4">4 hóspedes</option>
-  </select>
-  <button onclick="buscarHoteis()">Buscar</button>
-</section>
-
-<section class="hotel-grid" id="hotelGrid"></section>
-
-<div id="modal">
-  <div class="modal-content">
-    <h2>Reservar Hotel</h2>
-    <form onsubmit="submitReservation(event)">
-      <label>Nome:</label>
-      <input type="text" name="nome" required>
-      <label>Email:</label>
-      <input type="email" name="email" required>
-      <label>Quartos:</label>
-      <input type="number" name="quartos" min="1" max="5" required>
-      <button type="submit">Enviar Reserva</button>
-      <button type="button" onclick="closeModal()" style="background:#888;margin-top:6px;">Cancelar</button>
-    </form>
+    <nav class="mainnav" aria-label="Menu principal">
+      <a href="#sobre" onclick="scrollToId('sobre')">Sobre</a>
+      <a href="#pacotes" onclick="scrollToId('pacotes')">Pacotes</a>
+      <a href="#contato" onclick="scrollToId('contato')">Contato</a>
+    </nav>
   </div>
-</div>
 
-<footer>
-  &copy; 2025 Trivago Virtual | Projeto Educativo
-</footer>
+  <!-- Hero with search -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-grid">
+      <div>
+        <h2 id="hero-title">Encontre e alugue o pacote perfeito</h2>
+        <p>Pacotes montados com passagens, hotel e passeios — prontos para reservar. Use o buscador para filtrar por destino, preço e duração.</p>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+          <div style="display:flex;gap:8px;align-items:center">
+            <button class="btn" onclick="showAll()">Ver todos os pacotes</button>
+          </div>
+          <div>
+            <button class="btn secondary" onclick="openContato()">Suporte / Atendimento</button>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;color:#064e61;font-size:13px">
+          <strong>Dica:</strong> clique em "Ver detalhes" num pacote para abrir a reserva rápida.
+        </div>
+      </div>
+
+      <aside class="search-card" aria-label="Buscador de pacotes">
+        <strong>Buscar pacotes</strong>
+        <div style="height:10px"></div>
+        <div class="field">
+          <input id="searchInput" type="text" placeholder="Destino (ex: Paris, Rio, NY)" aria-label="Pesquisar destino">
+        </div>
+
+        <div class="field">
+          <select id="regionFilter" aria-label="Filtrar por região">
+            <option value="">Todas as regiões</option>
+            <option value="América do Sul">América do Sul</option>
+            <option value="América do Norte">América do Norte</option>
+            <option value="Europa">Europa</option>
+            <option value="Ásia">Ásia</option>
+            <option value="Oceania">Oceania</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <input id="maxPrice" type="number" placeholder="Preço máximo (R$)" min="0" />
+          <input id="maxDays" type="number" placeholder="Máx. dias" min="1" />
+        </div>
+
+        <div style="display:flex;gap:8px;">
+          <button class="btn" onclick="applyFilters()">Aplicar</button>
+          <button class="btn secondary" onclick="resetFilters()">Limpar</button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Content / Pacotes -->
+  <main class="content">
+    <section id="sobre" style="background:linear-gradient(180deg,#fff,#f9ffff);padding:18px;border-radius:12px;margin-bottom:18px">
+      <h2 style="color:var(--blue-1)">Sobre o serviço</h2>
+      <p>O Alugar Viagens oferece pacotes prontos com foco em comodidade e custo-benefício. Cada pacote abaixo é um conjunto sugerido (passagem + hotel + passeios locais). Você pode filtrar a lista, ver detalhes e abrir uma reserva rápida (formulário local para entregar ao professor ou mostrar em apresentação).</p>
+    </section>
+
+    <section id="pacotes">
+      <div class="controls">
+        <div style="display:flex;gap:10px;align-items:center">
+          <strong>Pacotes disponíveis</strong>
+          <span style="color:#0e6b89;font-size:13px">({{displayCount}})</span>
+        </div>
+
+        <div style="display:flex;gap:8px;align-items:center">
+          <label style="font-size:13px;color:#154c5e">Ordenar por:</label>
+          <select id="sortBy" onchange="renderCards()">
+            <option value="recommended">Recomendado</option>
+            <option value="priceAsc">Preço ↑</option>
+            <option value="priceDesc">Preço ↓</option>
+            <option value="daysAsc">Duração ↑</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="cards" class="card-grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <!-- Modal (detalhes / reservar) -->
+  <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document">
+      <header>
+        <div>
+          <h3 id="modalTitle">Detalhes do pacote</h3>
+          <div id="modalSub" style="color:#0e6b89;font-size:13px"></div>
+        </div>
+        <div>
+          <button class="close" onclick="closeModal()">Fechar ✕</button>
+        </div>
+      </header>
+
+      <div id="modalBody" style="margin-top:12px">
+        <!-- preenchido dinamicamente -->
+      </div>
+
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px">
+        <button class="btn secondary" onclick="closeModal()">Cancelar</button>
+        <button class="btn" onclick="abrirReserva()">Reservar agora</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reserva rápida -->
+  <div id="reservaBackdrop" class="modal-backdrop" aria-hidden="true">
+    <div class="modal">
+      <header style="margin-bottom:10px">
+        <h3>Reserva Rápida</h3>
+      </header>
+
+      <form id="reservaForm" onsubmit="confirmReserva(event)">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <input id="resNome" required placeholder="Seu nome" style="flex:1;padding:10px;border-radius:8px;border:1px solid #eef6fb" />
+          <input id="resEmail" type="email" required placeholder="Email" style="flex:1;padding:10px;border-radius:8px;border:1px solid #eef6fb" />
+        </div>
+
+        <div style="margin-top:10px;display:flex;gap:8px">
+          <input id="resCPF" placeholder="Telefone/CPF (opcional)" style="flex:1;padding:10px;border-radius:8px;border:1px solid #eef6fb" />
+          <input id="resPassengers" type="number" min="1" value="1" style="width:120px;padding:10px;border-radius:8px;border:1px solid #eef6fb" />
+        </div>
+
+        <div style="margin-top:12px;display:flex;justify-content:flex-end;gap:8px">
+          <button type="button" class="btn secondary" onclick="closeReserva()">Cancelar</button>
+          <button type="submit" class="btn">Confirmar reserva</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer id="contato">
+    <div style="max-width:1100px;margin:0 auto;padding:8px 12px">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div>
+          <strong>Alugar Viagens</strong><br>
+          Atendimento: (11) 4000-0000 • suporte@alugarviagens.ex
+        </div>
+        <div style="color:#dff6ff;font-size:13px">Feito para trabalho escolar — Protótipo funcional</div>
+      </div>
+    </div>
+  </footer>
 
 <script>
-// Lista de hotéis
-const hoteis = [
-  {nome:"Hotel Sol Brilhante", cidade:"Rio de Janeiro", preco:"R$450/noite", img:"img src="https://i.ibb.co/jPZppTvX/Banner-1-1024x680.jpg" alt="Banner-1-1024x680" border="0"> 
-  {nome:"Paris Lux", cidade:"Paris", preco:"€120/noite", img:"img src="https://i.ibb.co/gZVz803v/images.jpg" alt="images" border="0"> 
-  {nome:"Tokyo Inn", cidade:"Tóquio", preco:"¥15000/noite", img:"img src="https://i.ibb.co/7JXgLrbQ/images-1.jpg" alt="images-1" border="0">
-  {nome:"Sydney Paradise", cidade:"Sydney", preco:"A$200/noite", img:"img src="https://i.ibb.co/Cs0X8FvB/images-2.jpg" alt="images-2" border="0"> 
-  {nome:"Hotel Montanha Azul", cidade:"Gramado", preco:"R$350/noite", img:"img src="https://i.ibb.co/KjBZsmD4/images-3.jpg" alt="images-3" border="0"> 
+  /* -------------------------
+     Dados de pacotes (exemplos)
+     ------------------------- */
+  const pacotes = [
+    {
+      id: 'paris-1',
+      title: 'Paris Romântica',
+      region: 'Europa',
+      country: 'França',
+      priceBRL: 8200,
+      days: 7,
+      highlights: ['Tour Eiffel', 'Museu do Louvre', 'Cruzeiro no Sena'],
+      img: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=1a2f3f4a0d4b7b8f6b2a3c7b2d9e5c9f'
+    },
+    {
+      id: 'rio-1',
+      title: 'Rio Essencial',
+      region: 'América do Sul',
+      country: 'Brasil',
+      priceBRL: 2200,
+      days: 4,
+      highlights: ['Cristo Redentor','Pão de Açúcar','Praia de Copacabana'],
+      img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=6e8b2a3f4c8b7d9a5c3e2f6a1b4c5d7e'
+    },
+    {
+      id: 'ny-1',
+      title: 'New York Express',
+      region: 'América do Norte',
+      country: 'Estados Unidos',
+      priceBRL: 7200,
+      days: 5,
+      highlights: ['Times Square','Estátua da Liberdade','Central Park'],
+      img: 'https://images.unsplash.com/photo-1549924231-f129b911e442?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=3f0c4b52d8a9e2b7a1c3d6f4b9e8a7d2'
+    },
+    {
+      id: 'tokyo-1',
+      title: 'Tóquio Moderno',
+      region: 'Ásia',
+      country: 'Japão',
+      priceBRL: 10500,
+      days: 8,
+      highlights: ['Shibuya','Templos','Gastronomia'],
+      img: 'https://images.unsplash.com/photo-1549692520-acc6669e2f0c?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=5b1e2c3d4a5b6c7d8e9f0a1b2c3d4e5f'
+    },
+    {
+      id: 'lisboa-1',
+      title: 'Lisboa Histórica',
+      region: 'Europa',
+      country: 'Portugal',
+      priceBRL: 4900,
+      days: 6,
+      highlights: ['Belém','Alfama','Fado ao vivo'],
+      img: 'https://images.unsplash.com/photo-1508057198894-247b23fe5ade?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=8e7c6b5a4d3c2b1f0a9e8d7c6b5a4c3d'
+    },
+    {
+      id: 'maldivas-1',
+      title: 'Maldivas Luxo',
+      region: 'Oceania',
+      country: 'Maldivas',
+      priceBRL: 16800,
+      days: 7,
+      highlights: ['Bangalô na água','Snorkel','Spa incluso'],
+      img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=2c3b4d5e6f7a8b9c0d1e2f3a4b5c6d7e'
+    }
+  ];
 
-const hotelGrid = document.getElementById('hotelGrid');
-let hotelSelecionado = "";
+  // Estado atual (filtros)
+  let currentList = [...pacotes];
 
-function renderHotels(lista){
-  hotelGrid.innerHTML = "";
-  lista.forEach(hotel=>{
-    const card = document.createElement('div');
-    card.className='hotel-card';
-    card.innerHTML=`<img src="${hotel.img}" alt="${hotel.nome}">
-      <div class="content">
-        <h3>${hotel.nome}</h3>
-        <p>${hotel.cidade}</p>
-        <p>${hotel.preco}</p>
-        <button onclick="openModal('${hotel.nome}')">Reservar</button>
-      </div>`;
-    hotelGrid.appendChild(card);
+  // Render inicial
+  document.addEventListener('DOMContentLoaded', () => {
+    renderCards();
+    document.getElementById('searchInput').addEventListener('input', debounce(applyFilters, 300));
   });
-}
 
-// Inicial
-renderHotels(hoteis);
+  function renderCards(){
+    const container = document.getElementById('cards');
+    container.innerHTML = '';
+    // ordenação
+    const sort = document.getElementById('sortBy').value;
+    let list = [...currentList];
+    if(sort === 'priceAsc') list.sort((a,b)=>a.priceBRL-b.priceBRL);
+    if(sort === 'priceDesc') list.sort((a,b)=>b.priceBRL-a.priceBRL);
+    if(sort === 'daysAsc') list.sort((a,b)=>a.days-b.days);
 
-// Busca hotéis
-function buscarHoteis(){
-  const destino = document.getElementById('destino').value.toLowerCase();
-  const filtrados = hoteis.filter(h => h.cidade.toLowerCase().includes(destino));
-  renderHotels(filtrados.length? filtrados : hoteis);
-}
+    // contador visível
+    const infoSpan = document.querySelector('.controls strong + span');
+    if(infoSpan) infoSpan.textContent = `(${list.length})`;
 
-// Modal
-function openModal(nome){
-  hotelSelecionado = nome;
-  document.getElementById('modal').style.display='flex';
-}
-function closeModal(){
-  document.getElementById('modal').style.display='none';
-}
-function submitReservation(e){
-  e.preventDefault();
-  alert(`Reserva enviada com sucesso para ${hotelSelecionado}! ✈️`);
-  closeModal();
-}
+    // montar cards
+    list.forEach(pkg => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.innerHTML = `
+        <img src="${pkg.img}" alt="${escapeHtml(pkg.title)}">
+        <div class="meta">
+          <div class="tag">${escapeHtml(pkg.country)}</div>
+          <div class="price">R$ ${numberWithCommas(pkg.priceBRL)}</div>
+        </div>
+        <h3>${escapeHtml(pkg.title)}</h3>
+        <p>${escapeHtml(pkg.highlights.slice(0,2).join(' • '))} • ${pkg.days} dias</p>
+        <div class="actions">
+          <div class="pill">${pkg.region}</div>
+          <div style="margin-left:auto;display:flex;gap:8px">
+            <button class="btn secondary" onclick="abrirDetalhes('${pkg.id}')">Ver detalhes</button>
+            <button class="btn" onclick="abrirReservaModal('${pkg.id}')">Reservar</button>
+          </div>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+  }
 
-// Scroll para busca
-function scrollToSearch(){
-  document.getElementById('search').scrollIntoView({behavior:'smooth'});
-}
+  /* ---------------------------
+     Filtros / Busca / Utilitários
+     --------------------------- */
+  function applyFilters(){
+    const q = document.getElementById('searchInput').value.trim().toLowerCase();
+    const region = document.getElementById('regionFilter').value;
+    const maxPrice = Number(document.getElementById('maxPrice').value) || Infinity;
+    const maxDays = Number(document.getElementById('maxDays').value) || Infinity;
 
-// Modo noturno
-let noite = false;
-function toggleNight(){
-  noite = !noite;
-  document.body.style.filter=noite?'invert(0.9) hue-rotate(180deg)':'none';
-}
+    currentList = pacotes.filter(p=>{
+      const matchQ = !q || (p.title+ ' ' + p.country + ' ' + p.highlights.join(' ')).toLowerCase().includes(q);
+      const matchRegion = !region || p.region === region;
+      const matchPrice = p.priceBRL <= maxPrice;
+      const matchDays = p.days <= maxDays;
+      return matchQ && matchRegion && matchPrice && matchDays;
+    });
+
+    renderCards();
+  }
+
+  function resetFilters(){
+    document.getElementById('searchInput').value = '';
+    document.getElementById('regionFilter').value = '';
+    document.getElementById('maxPrice').value = '';
+    document.getElementById('maxDays').value = '';
+    document.getElementById('sortBy').value = 'recommended';
+    currentList = [...pacotes];
+    renderCards();
+  }
+
+  function showAll(){ resetFilters(); window.scrollTo({top:document.getElementById('pacotes').offsetTop - 20, behavior:'smooth'}); }
+  function scrollToId(id){ document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'}); }
+
+  /* ---------------------------
+     Modal: detalhes do pacote
+     --------------------------- */
+  function abrirDetalhes(id){
+    const pkg = pacotes.find(p=>p.id===id);
+    if(!pkg) return;
+    document.getElementById('modalTitle').textContent = pkg.title;
+    document.getElementById('modalSub').textContent = `${pkg.country} • ${pkg.region} • ${pkg.days} dias`;
+    const body = document.getElementById('modalBody');
+    body.innerHTML = `
+      <img src="${pkg.img}" alt="${escapeHtml(pkg.title)}" style="width:100%;height:220px;object-fit:cover;border-radius:8px">
+      <div style="display:flex;gap:12px;margin-top:10px;flex-wrap:wrap">
+        <div style="flex:1">
+          <h4 style="margin:8px 0 6px;color:#08324b">O que inclui</h4>
+          <ul>
+            <li>Passagem aérea ida e volta (classe econômica)</li>
+            <li>Hotel 3-4 estrelas (café da manhã incluso)</li>
+            <li>${pkg.highlights.join(', ')}</li>
+            <li>Traslados e suporte local</li>
+          </ul>
+        </div>
+        <div style="width:220px">
+          <div style="padding:12px;border-radius:10px;background:#f3fbff;border:1px solid #e7f8ff">
+            <div style="font-weight:800;color:var(--blue-1);font-size:20px">R$ ${numberWithCommas(pkg.priceBRL)}</div>
+            <div style="margin-top:8px;color:#0b556b">Por pessoa • ${pkg.days} dias</div>
+            <div style="margin-top:12px;display:flex;gap:8px">
+              <button class="btn" onclick="abrirReservaModal('${pkg.id}')">Reservar</button>
+              <button class="btn secondary" onclick="gerarFicha('${pkg.id}')">Gerar ficha</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    showModal('modalBackdrop');
+  }
+
+  function showModal(id){
+    const el = document.getElementById(id);
+    el.classList.add('show');
+    el.setAttribute('aria-hidden','false');
+  }
+  function closeModal(){
+    const el = document.getElementById('modalBackdrop');
+    el.classList.remove('show');
+    el.setAttribute('aria-hidden','true');
+  }
+
+  /* ---------------------------
+     Reserva (modal formulário)
+     --------------------------- */
+  let reservaSelectedId = null;
+  function abrirReservaModal(id){
+    reservaSelectedId = id;
+    document.getElementById('reservaBackdrop').classList.add('show');
+    document.getElementById('reservaBackdrop').setAttribute('aria-hidden','false');
+  }
+  function closeReserva(){
+    document.getElementById('reservaBackdrop').classList.remove('show');
+    document.getElementById('reservaBackdrop').setAttribute('aria-hidden','true');
+    document.getElementById('reservaForm').reset();
+  }
+  function confirmarReserva(ev){
+    ev.preventDefault();
+    const pkg = pacotes.find(p => p.id === reservaSelectedId);
+    if(!pkg){ alert('Selecione um pacote primeiro.'); return; }
+    const nome = document.getElementById('resNome').value;
+    const email = document.getElementById('resEmail').value;
+    const passengers = Number(document.getElementById('resPassengers').value) || 1;
+
+    // Simulação: mostrar resumo e salvar localmente (ex.: localStorage)
+    const reserva = {
+      pacote: pkg.title,
+      id: pkg.id,
+      nome, email, passengers,
+      total: pkg.priceBRL * passengers,
+      date: new Date().toISOString()
+    };
+    // Guardar reserva simulada
+    const atuais = JSON.parse(localStorage.getItem('reservas_demo') || '[]');
+    atuais.push(reserva);
+    localStorage.setItem('reservas_demo', JSON.stringify(atuais));
+
+    closeReserva();
+    closeModal();
+    alert(`Reserva simulada registrada!\nPacote: ${pkg.title}\nNome: ${nome}\nTotal: R$ ${numberWithCommas(reserva.total)}\n(Confira no localStorage 'reservas_demo')`);
+  }
+
+  function abrirReserva(){ // botão do modal para abrir formulário
+    closeModal();
+    abrirReservaModal(reservaSelectedId || pacotes[0].id);
+  }
+
+  /* ---------------------------
+     Geração de "ficha" simples (download de texto)
+     --------------------------- */
+  function gerarFicha(id){
+    const pkg = pacotes.find(p=>p.id===id);
+    if(!pkg) return;
+    const content = `
+Ficha do pacote: ${pkg.title}
+
+Destino: ${pkg.country} (${pkg.region})
+Duração: ${pkg.days} dias
+Preço por pessoa: R$ ${numberWithCommas(pkg.priceBRL)}
+
+Destaques:
+- ${pkg.highlights.join('\n- ')}
+
+(Protótipo - Alugar Viagens)
+    `;
+    const blob = new Blob([content], {type: 'text/plain;charset=utf-8'});
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `${pkg.id}_ficha.txt`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
+
+  /* ---------------------------
+     Pequenas utilitárias
+     --------------------------- */
+  function numberWithCommas(x){ return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
+  function escapeHtml(s){ return s.replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+  // debounce
+  function debounce(fn, wait){
+    let t;
+    return function(...a){ clearTimeout(t); t = setTimeout(()=>fn.apply(this,a), wait); }
+  }
+
+  // abrir contato (simples)
+  function openContato(){
+    alert('Suporte: suporte@alugarviagens.ex\nTel: (11) 4000-0000\nEste é um protótipo funcional para apresentação escolar.');
+  }
+
+  // gerar ficha do primeiro pacote se quiser reservar sem abrir modal
+  function abrirReservaModalDirect(id){
+    reservaSelectedId = id;
+    abrirReservaModal(id);
+  }
+
+  // Accessibility: fechar modal com ESC
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape'){
+      closeModal();
+      closeReserva();
+    }
+  });
+
+  // Expor contar (para o texto dinâmico da página)
+  Object.defineProperty(window, '{{displayCount}}', {get:()=>currentList.length});
 </script>
-
 </body>
 </html>
-
