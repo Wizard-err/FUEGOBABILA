@@ -1,134 +1,346 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Alugar Viagens — Pacotes</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --blue-1: #005ea6;
-    --blue-2: #00a7d9;
-    --accent: #ffb703;
-    --bg: #f6fbff;
-    --card-shadow: 0 6px 18px rgba(2,48,84,0.08);
-    --glass: rgba(255,255,255,0.7);
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    font-family: 'Poppins', Arial, sans-serif;
-    margin:0;
-    background: linear-gradient(180deg,#f6fbff 0%, #eef9ff 60%);
-    color:#043047;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-  }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Alugar Viagens — Pacotes Premium</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- Combinação de fontes mais impactante: Montserrat para títulos, Poppins para corpo -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* --------------------------------------------------
+       NOVA PALETA DE CORES E VARIÁVEIS (WOW-FACTOR)
+       -------------------------------------------------- */
+    :root{
+      --color-primary: #004e92; /* Azul Profundo */
+      --color-secondary: #0077b6; /* Azul Ciano */
+      --color-accent: #ffc300; /* Amarelo Ouro */
+      --color-bg-light: #f0f8ff; /* Fundo Gélido */
+      --color-bg-dark: #e6f2ff; /* Fundo mais escuro */
+      --color-text-primary: #1a1a1a;
+      --color-text-secondary: #333333;
+      
+      /* Sombras mais suaves e profundas */
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --shadow-deep: 0 20px 40px rgba(0, 0, 0, 0.15);
+      
+      --glass: rgba(255, 255, 255, 0.85);
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+    }
+    
+    /* --------------------------------------------------
+       BASE
+       -------------------------------------------------- */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      font-family: 'Poppins', Arial, sans-serif;
+      margin:0;
+      background: linear-gradient(180deg, var(--color-bg-light) 0%, var(--color-bg-dark) 100%);
+      color: var(--color-text-secondary);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height: 1.6;
+    }
+    h1, h2, h3, h4 {
+        font-family: 'Montserrat', sans-serif;
+        color: var(--color-text-primary);
+        line-height: 1.2;
+    }
 
-  /* Header / Nav */
-  .topbar{
-    background: linear-gradient(90deg,var(--blue-1),var(--blue-2));
-    color:white;
-    padding:18px 24px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-  }
-  .brand{
-    display:flex;
-    align-items:center;
-    gap:14px;
-  }
-  .logo{
-    width:56px;height:56px;border-radius:10px;
-    background:linear-gradient(135deg,#ffffff22,#ffffff11);
-    display:flex;align-items:center;justify-content:center;
-    font-weight:700;font-size:20px;color:white;box-shadow:0 4px 10px rgba(0,0,0,0.08);
-  }
-  .brand h1{font-size:18px;margin:0;letter-spacing:0.2px}
-  .brand p{margin:0;font-size:12px;opacity:0.95}
+    /* Utilitários */
+    .spacer-10{height:10px}
+    .field-group{display:flex;gap:12px}
 
-  nav.mainnav{display:flex;gap:18px;align-items:center}
-  nav.mainnav a{color:white;text-decoration:none;font-weight:600;opacity:0.95}
-  nav.mainnav a:hover{opacity:1;text-decoration:underline}
+    /* --------------------------------------------------
+       HEADER / NAV
+       -------------------------------------------------- */
+    .topbar{
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+      color:white;
+      padding:20px 30px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      box-shadow: var(--shadow-soft);
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:16px;
+    }
+    .logo{
+      width:60px;height:60px;border-radius:var(--radius-sm);
+      background:var(--color-accent); /* Logo em destaque */
+      display:flex;align-items:center;justify-content:center;
+      font-weight:900;font-size:24px;color:var(--color-primary);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    .brand h1{font-size:22px;margin:0;letter-spacing:0.5px;color:white}
+    .brand p{margin:0;font-size:13px;opacity:0.95;color:#f0f8ff}
 
-  /* Hero / Search */
-  .hero{
-    max-width:1200px;margin:24px auto;padding:28px;border-radius:14px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.85));
-    box-shadow: var(--card-shadow);
-    backdrop-filter: blur(6px);
-  }
-  .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:20px;align-items:center}
-  .hero h2{color:var(--blue-1);font-size:28px;margin:0 0 8px}
-  .hero p{margin:0 0 18px;color:#135e78}
-  .search-card{
-    border-radius:12px;padding:14px;background:linear-gradient(180deg,#ffffff,#f3fbff);
-    box-shadow:0 4px 18px rgba(2,48,84,0.06);
-  }
-  .field{display:flex;gap:8px;align-items:center;margin-bottom:10px}
-  .field input[type="text"], .field select, .field input[type="date"], .field input[type="number"]{
-    flex:1;padding:10px 12px;border-radius:10px;border:1px solid #e6f3f9;background:white;font-size:14px;
-  }
-  .btn{
-    background: linear-gradient(90deg,var(--blue-1),var(--blue-2));
-    color:white;padding:11px 16px;border-radius:10px;border:none;font-weight:700;cursor:pointer;
-    box-shadow: 0 6px 18px rgba(0,120,180,0.12);
-  }
-  .btn.secondary{
-    background:transparent;color:var(--blue-1);border:1px solid #d7eef8;
-    box-shadow:none;font-weight:600;
-  }
+    nav.mainnav{display:flex;gap:25px;align-items:center}
+    nav.mainnav a{color:white;text-decoration:none;font-weight:600;opacity:0.9;transition:opacity 0.2s, transform 0.2s}
+    nav.mainnav a:hover{opacity:1;transform: translateY(-2px);text-decoration:underline}
 
-  /* Packages list */
-  .content{max-width:1200px;margin:20px auto;padding:0 16px}
-  .controls{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:14px}
-  .filters{display:flex;gap:10px;align-items:center}
-  .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .card{
-    background:white;border-radius:12px;padding:12px;box-shadow:var(--card-shadow);overflow:hidden;
-    display:flex;flex-direction:column;transition:transform .18s, box-shadow .18s;
-  }
-  .card:hover{transform:translateY(-6px);box-shadow:0 14px 28px rgba(2,48,84,0.12)}
-  .card img{width:100%;height:150px;object-fit:cover;border-radius:8px}
-  .card .meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
-  .tag{background:var(--blue-2);color:white;padding:6px 8px;border-radius:8px;font-weight:600;font-size:13px}
-  .price{font-weight:800;color:var(--blue-1);font-size:18px}
-  .card h3{margin:8px 0 6px;font-size:16px}
-  .card p{font-size:13px;color:#125a6f;flex:1}
-  .card .actions{display:flex;gap:8px;margin-top:12px;align-items:center}
-  .pill{background:#eef8ff;color:var(--blue-1);padding:6px 8px;border-radius:999px;font-weight:600;font-size:13px}
+    /* --------------------------------------------------
+       HERO / SEARCH
+       -------------------------------------------------- */
+    .hero{
+      max-width:1300px;margin:40px auto;padding:40px;border-radius:var(--radius-lg);
+      background: var(--glass);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(10px); /* Efeito glass mais forte */
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    .hero-grid{display:grid;grid-template-columns:1fr 450px;gap:40px;align-items:center}
+    .hero h2{color:var(--color-primary);font-size:3rem;margin:0 0 15px;font-weight:900}
+    .hero p{margin:0 0 25px;color:var(--color-text-secondary);font-size:1.1rem}
+    .hero-actions{display:flex;gap:15px;flex-wrap:wrap;margin-top:20px}
+    .hero-tip{margin-top:20px;color:var(--color-primary);font-size:14px;padding:10px 15px;background:#eef8ff;border-left: 4px solid var(--color-accent);border-radius:var(--radius-sm)}
 
-  /* Modal */
-  .modal-backdrop{position:fixed;inset:0;background:rgba(3,20,34,0.45);display:flex;align-items:center;justify-content:center;z-index:999;opacity:0;pointer-events:none;transition:opacity .18s}
-  .modal-backdrop.show{opacity:1;pointer-events:auto}
-  .modal{width:96%;max-width:720px;background:white;border-radius:12px;padding:18px;box-shadow:0 18px 40px rgba(2,48,84,0.2)}
-  .modal header{display:flex;justify-content:space-between;align-items:center}
-  .close{background:#f3f7fb;border:1px solid #eef6fb;border-radius:8px;padding:6px 10px;cursor:pointer}
+    .search-card{
+      border-radius:var(--radius-md);padding:30px;
+      background:linear-gradient(180deg,#ffffff,#f7f9ff);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid #e6f3f9;
+    }
+    .search-card strong{font-size:1.2rem;display:block;margin-bottom:15px;color:var(--color-primary)}
+    .field{margin-bottom:15px}
+    .field input[type="text"], .field select, .field input[type="date"], .field input[type="number"], .form-input{
+      flex:1;padding:14px;border-radius:var(--radius-sm);border:1px solid #d0e0f0;background:white;font-size:16px;
+      width: 100%;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .field input:focus, .field select:focus, .form-input:focus {
+        border-color: var(--color-accent);
+        box-shadow: 0 0 0 3px rgba(255, 195, 0, 0.2);
+        outline: none;
+    }
+    .search-actions{display:flex;gap:10px;margin-top:20px}
 
-  /* Footer */
-  footer{margin-top:30px;padding:26px;background:linear-gradient(90deg,var(--blue-1),var(--blue-2));color:white;text-align:center;border-top-left-radius:12px;border-top-right-radius:12px}
+    /* --------------------------------------------------
+       BOTÕES
+       -------------------------------------------------- */
+    .btn{
+      background: linear-gradient(135deg, var(--color-accent), #ff9900);
+      color:var(--color-primary);
+      padding:14px 25px;
+      border-radius:var(--radius-sm);
+      border:none;
+      font-weight:700;
+      cursor:pointer;
+      box-shadow: 0 8px 20px rgba(255, 195, 0, 0.3);
+      transition: all 0.25s ease-in-out;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .btn:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(255, 195, 0, 0.4);
+      background: linear-gradient(135deg, #ff9900, var(--color-accent));
+    }
+    .btn.secondary{
+      background:transparent;
+      color:var(--color-primary);
+      border:1px solid var(--color-primary);
+      box-shadow:none;
+      font-weight:600;
+      padding:14px 25px;
+    }
+    .btn.secondary:hover{
+      transform: translateY(-2px);
+      background: var(--color-bg-light);
+      box-shadow: 0 4px 8px rgba(0, 78, 146, 0.1);
+    }
 
-  /* Responsiveness */
-  @media (max-width:1000px){
-    .hero-grid{grid-template-columns:1fr}
-    .card-grid{grid-template-columns:repeat(2,1fr)}
-  }
-  @media (max-width:600px){
-    .card-grid{grid-template-columns:1fr}
-    nav.mainnav{display:none}
-    .topbar{padding:12px}
-    .brand h1{font-size:15px}
-    .logo{width:46px;height:46px}
-  }
-</style>
+    /* --------------------------------------------------
+       PACKAGES LIST
+       -------------------------------------------------- */
+    .content{max-width:1300px;margin:40px auto;padding:0 30px}
+
+    .about-section{
+      background:linear-gradient(180deg,#ffffff,#f7f9ff);
+      padding:30px;
+      border-radius:var(--radius-md);
+      margin-bottom:30px;
+      border: 1px solid #eef6fb;
+      box-shadow: var(--shadow-soft);
+    }
+    .about-section h2{color:var(--color-primary);margin-top:0;font-size:2.2rem;font-weight:700}
+
+    .controls{display:flex;gap:20px;align-items:center;justify-content:space-between;margin-bottom:25px;padding: 0 10px;}
+    .package-count{display:flex;gap:10px;align-items:center}
+    .package-count .count-display{color:var(--color-secondary);font-size:15px;font-weight:600}
+    .sort-control label{font-size:15px;color:var(--color-text-secondary)}
+    .sort-control select{padding:10px 12px;border-radius:var(--radius-sm);border:1px solid #d0e0f0;font-size:15px}
+
+    .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+    .card{
+      background:white;
+      border-radius:var(--radius-md);
+      padding:20px;
+      box-shadow: var(--shadow-soft);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      transition: transform .3s, box-shadow .3s;
+      border: 1px solid #f0f0f0;
+    }
+    .card:hover{
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-deep);
+    }
+
+    .card img{
+        width:100%;
+        height:200px;
+        object-fit:cover;
+        border-radius:var(--radius-sm);
+        margin-bottom:15px;
+        transition: transform 0.3s;
+    }
+    .card:hover img {
+        transform: scale(1.03);
+    }
+
+    .card .meta{display:flex;justify-content:space-between;align-items:center;}
+    .tag{
+      background:var(--color-secondary);
+      color:white;
+      padding:6px 12px;
+      border-radius:999px;
+      font-weight:600;
+      font-size:12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .price{font-weight:900;color:var(--color-primary);font-size:26px}
+    .card h3{margin:10px 0 5px;font-size:1.4rem;font-weight:700}
+    .card p{font-size:15px;color:var(--color-text-secondary);flex:1;margin-bottom:20px}
+    .card .actions{display:flex;gap:10px;margin-top:auto;align-items:center}
+    .pill{
+      background:var(--color-bg-light);
+      color:var(--color-primary);
+      padding:8px 15px;
+      border-radius:999px;
+      font-weight:600;
+      font-size:13px;
+      border: 1px solid #d0e0f0;
+    }
+
+    /* --------------------------------------------------
+       MODAL
+       -------------------------------------------------- */
+    .modal-backdrop{
+      position:fixed;inset:0;background:rgba(0, 0, 0, 0.7);
+      display:flex;align-items:center;justify-content:center;
+      z-index:9999;opacity:0;pointer-events:none;transition:opacity .3s;
+    }
+    .modal-backdrop.show{opacity:1;pointer-events:auto}
+    .modal{
+      width:96%;max-width:800px;
+      background:white;border-radius:var(--radius-lg);padding:30px;
+      box-shadow:0 25px 50px rgba(0, 0, 0, 0.3);
+      transform: scale(0.9);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efeito mola */
+    }
+    .modal-backdrop.show .modal{
+      transform: scale(1);
+    }
+    .modal header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+    .modal-subtitle{color:var(--color-secondary);font-size:15px;font-weight:600}
+    .modal-body{margin-top:15px}
+    .modal-footer{display:flex;gap:10px;justify-content:flex-end;margin-top:25px}
+
+    .modal-detail-card{
+      padding:20px;border-radius:var(--radius-md);
+      background:var(--color-bg-light);
+      border:1px solid #e7f8ff;
+    }
+    .modal-detail-card .price{font-weight:900;font-size:30px;color:var(--color-primary)}
+    .modal-detail-card .info{margin-top:10px;color:var(--color-text-secondary);font-size:15px}
+    .modal-detail-card .actions{margin-top:20px;display:flex;gap:10px}
+
+    .reserva-header{margin-bottom:20px}
+    .reserva-info-text{font-size:16px;color:var(--color-text-secondary);margin-bottom:20px}
+    .reserva-actions{margin-top:25px;display:flex;justify-content:flex-end;gap:10px}
+    .small-input{width: 120px !important; flex: none !important;}
+
+
+    .close{
+      background:#f3f7fb;border:1px solid #eef6fb;border-radius:var(--radius-sm);
+      padding:10px 15px;cursor:pointer;font-weight:600;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .close:hover{background:#e7eff7; transform: rotate(5deg);}
+
+    /* --------------------------------------------------
+       FOOTER
+       -------------------------------------------------- */
+    footer{
+      margin-top:50px;
+      padding:35px 30px;
+      background:linear-gradient(90deg,var(--color-primary),var(--color-secondary));
+      color:white;
+      text-align:center;
+      border-top-left-radius:var(--radius-lg);
+      border-top-right-radius:var(--radius-lg);
+    }
+    .footer-content{
+      max-width:1300px;margin:0 auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:20px;
+    }
+    .footer-details{text-align: left;}
+    .footer-disclaimer{color:#dff6ff;font-size:14px;text-align: right;}
+
+    /* --------------------------------------------------
+       RESPONSIVENESS
+       -------------------------------------------------- */
+    @media (max-width:1100px){
+      .hero-grid{grid-template-columns:1fr}
+      .card-grid{grid-template-columns:repeat(2,1fr);gap:25px}
+      .hero h2{font-size:2.5rem}
+      .hero{margin:30px auto; max-width: 90%;}
+      .content{max-width: 90%;}
+    }
+    @media (max-width:768px){
+      .topbar{padding:15px 20px}
+      .hero{margin:20px;padding:30px}
+      .content{padding:0 20px}
+      .card-grid{grid-template-columns:1fr}
+      .footer-content{flex-direction: column; text-align: center;}
+      .footer-details, .footer-disclaimer{text-align: center;}
+      .modal{padding: 25px;}
+      .hero h2{font-size:2rem; margin-bottom: 10px;}
+      .hero p{font-size: 1rem;}
+    }
+    @media (max-width:600px){
+      nav.mainnav{display:none}
+      .topbar{padding:12px}
+      .brand h1{font-size:18px}
+      .logo{width:50px;height:50px}
+      .field-group{flex-direction: column;}
+      .small-input{width: 100% !important; margin-top: 10px;}
+      .hero-actions{flex-direction: column;}
+      .hero-actions .btn{width: 100%;}
+      .btn, .btn.secondary{padding: 12px 20px;}
+    }
+  </style>
 </head>
 <body>
 
   <!-- Topbar -->
-  <div class="topbar">
+  <header class="topbar">
     <div class="brand">
       <div class="logo">AV</div>
       <div>
@@ -142,32 +354,28 @@
       <a href="#pacotes" onclick="scrollToId('pacotes')">Pacotes</a>
       <a href="#contato" onclick="scrollToId('contato')">Contato</a>
     </nav>
-  </div>
+  </header>
 
   <!-- Hero with search -->
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-grid">
       <div>
-        <h2 id="hero-title">Encontre e alugue o pacote perfeito</h2>
-        <p>Pacotes montados com passagens, hotel e passeios — prontos para reservar. Use o buscador para filtrar por destino, preço e duração.</p>
+        <h2 id="hero-title">Descubra o Mundo. Reserve a Aventura.</h2>
+        <p>Pacotes exclusivos montados com passagens, hotel e passeios. Use nosso buscador inteligente para encontrar o destino dos seus sonhos em segundos.</p>
 
-        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
-          <div style="display:flex;gap:8px;align-items:center">
-            <button class="btn" onclick="showAll()">Ver todos os pacotes</button>
-          </div>
-          <div>
-            <button class="btn secondary" onclick="openContato()">Suporte / Atendimento</button>
-          </div>
+        <div class="hero-actions">
+          <button class="btn" onclick="showAll()">Explorar Pacotes Premium</button>
+          <button class="btn secondary" onclick="openContato()">Fale com um Consultor</button>
         </div>
 
-        <div style="margin-top:16px;color:#064e61;font-size:13px">
-          <strong>Dica:</strong> clique em "Ver detalhes" num pacote para abrir a reserva rápida.
+        <div class="hero-tip">
+          <strong>Dica Pro:</strong> Nossos pacotes incluem seguro-viagem completo e suporte 24h.
         </div>
       </div>
 
       <aside class="search-card" aria-label="Buscador de pacotes">
-        <strong>Buscar pacotes</strong>
-        <div style="height:10px"></div>
+        <strong>Buscar Pacotes Exclusivos</strong>
+        <div class="spacer-10"></div>
         <div class="field">
           <input id="searchInput" type="text" placeholder="Destino (ex: Paris, Rio, NY)" aria-label="Pesquisar destino">
         </div>
@@ -183,13 +391,13 @@
           </select>
         </div>
 
-        <div class="field">
+        <div class="field field-group">
           <input id="maxPrice" type="number" placeholder="Preço máximo (R$)" min="0" />
           <input id="maxDays" type="number" placeholder="Máx. dias" min="1" />
         </div>
 
-        <div style="display:flex;gap:8px;">
-          <button class="btn" onclick="applyFilters()">Aplicar</button>
+        <div class="search-actions">
+          <button class="btn" onclick="applyFilters()">Aplicar Filtros</button>
           <button class="btn secondary" onclick="resetFilters()">Limpar</button>
         </div>
       </aside>
@@ -198,22 +406,22 @@
 
   <!-- Content / Pacotes -->
   <main class="content">
-    <section id="sobre" style="background:linear-gradient(180deg,#fff,#f9ffff);padding:18px;border-radius:12px;margin-bottom:18px">
-      <h2 style="color:var(--blue-1)">Sobre o serviço</h2>
-      <p>O Alugar Viagens oferece pacotes prontos com foco em comodidade e custo-benefício. Cada pacote abaixo é um conjunto sugerido (passagem + hotel + passeios locais). Você pode filtrar a lista, ver detalhes e abrir uma reserva rápida (formulário local para entregar ao professor ou mostrar em apresentação).</p>
+    <section id="sobre" class="about-section">
+      <h2>Sobre a Experiência Alugar Viagens</h2>
+      <p>O Alugar Viagens oferece pacotes de viagem com curadoria, focados em proporcionar a melhor experiência com o máximo de conforto e o melhor custo-benefício. Cada pacote é um itinerário completo sugerido (passagem, hospedagem e atividades). Use os filtros para encontrar a opção perfeita e inicie sua reserva rápida (formulário local para demonstração).</p>
     </section>
 
     <section id="pacotes">
       <div class="controls">
-        <div style="display:flex;gap:10px;align-items:center">
-          <strong>Pacotes disponíveis</strong>
-          <span style="color:#0e6b89;font-size:13px">({{displayCount}})</span>
+        <div class="package-count">
+          <strong>Pacotes Disponíveis</strong>
+          <span class="count-display">({{displayCount}})</span>
         </div>
 
-        <div style="display:flex;gap:8px;align-items:center">
-          <label style="font-size:13px;color:#154c5e">Ordenar por:</label>
+        <div class="sort-control">
+          <label for="sortBy">Ordenar por:</label>
           <select id="sortBy" onchange="renderCards()">
-            <option value="recommended">Recomendado</option>
+            <option value="recommended">Mais Recomendados</option>
             <option value="priceAsc">Preço ↑</option>
             <option value="priceDesc">Preço ↓</option>
             <option value="daysAsc">Duração ↑</option>
@@ -230,21 +438,21 @@
     <div class="modal" role="document">
       <header>
         <div>
-          <h3 id="modalTitle">Detalhes do pacote</h3>
-          <div id="modalSub" style="color:#0e6b89;font-size:13px"></div>
+          <h3 id="modalTitle">Detalhes do Pacote</h3>
+          <div id="modalSub" class="modal-subtitle"></div>
         </div>
         <div>
           <button class="close" onclick="closeModal()">Fechar ✕</button>
         </div>
       </header>
 
-      <div id="modalBody" style="margin-top:12px">
+      <div id="modalBody" class="modal-body">
         <!-- preenchido dinamicamente -->
       </div>
 
-      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px">
-        <button class="btn secondary" onclick="closeModal()">Cancelar</button>
-        <button class="btn" onclick="abrirReserva()">Reservar agora</button>
+      <div class="modal-footer">
+        <button class="btn secondary" onclick="closeModal()">Voltar</button>
+        <button class="btn" onclick="abrirReserva()">Reservar Agora</button>
       </div>
     </div>
   </div>
@@ -252,340 +460,352 @@
   <!-- Reserva rápida -->
   <div id="reservaBackdrop" class="modal-backdrop" aria-hidden="true">
     <div class="modal">
-      <header style="margin-bottom:10px">
+      <header class="reserva-header">
         <h3>Reserva Rápida</h3>
       </header>
 
-      <form id="reservaForm" onsubmit="confirmReserva(event)">
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <input id="resNome" required placeholder="Seu nome" style="flex:1;padding:10px;border-radius:8px;border:1px solid #eef6fb" />
-          <input id="resEmail" type="email" required placeholder="Email" style="flex:1;padding:10px;border-radius:8px;border:1px solid #eef6fb" />
+      <form id="reservaForm" onsubmit="confirmarReserva(event)">
+        <p class="reserva-info-text">Pacote selecionado: <strong id="reservaPacoteNome"></strong></p>
+        
+        <div class="field-group">
+          <input id="resNome" required placeholder="Seu nome completo" class="form-input" />
+          <input id="resEmail" type="email" required placeholder="Seu melhor e-mail" class="form-input" />
         </div>
 
-        <div style="margin-top:10px;display:flex;gap:8px">
-          <input id="resCPF" placeholder="Telefone/CPF (opcional)" style="flex:1;padding:10px;border-radius:8px;border:1px solid #eef6fb" />
-          <input id="resPassengers" type="number" min="1" value="1" style="width:120px;padding:10px;border-radius:8px;border:1px solid #eef6fb" />
+        <div class="field-group">
+          <input id="resCPF" placeholder="Telefone/CPF (opcional)" class="form-input" />
+          <input id="resPassengers" type="number" min="1" value="1" placeholder="Passageiros" class="form-input small-input" />
         </div>
 
-        <div style="margin-top:12px;display:flex;justify-content:flex-end;gap:8px">
+        <div class="reserva-actions">
           <button type="button" class="btn secondary" onclick="closeReserva()">Cancelar</button>
-          <button type="submit" class="btn">Confirmar reserva</button>
+          <button type="submit" class="btn">Confirmar Reserva</button>
         </div>
       </form>
     </div>
   </div>
 
   <footer id="contato">
-    <div style="max-width:1100px;margin:0 auto;padding:8px 12px">
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
-        <div>
-          <strong>Alugar Viagens</strong><br>
-          Atendimento: (11) 4000-0000 • suporte@alugarviagens.ex
-        </div>
-        <div style="color:#dff6ff;font-size:13px">Feito para trabalho escolar — Protótipo funcional</div>
+    <div class="footer-content">
+      <div class="footer-details">
+        <strong>Alugar Viagens</strong><br>
+        Atendimento Premium: (11) 4000-0000 • suporte@alugarviagens.ex
       </div>
+      <div class="footer-disclaimer">Protótipo Funcional para Apresentação Acadêmica | Desenvolvido com Paixão e Código Limpo</div>
     </div>
   </footer>
 
-<script>
-  /* -------------------------
-     Dados de pacotes (exemplos)
-     ------------------------- */
-  const pacotes = [
-    {
-      id: 'paris-1',
-      title: 'Paris Romântica',
-      region: 'Europa',
-      country: 'França',
-      priceBRL: 8200,
-      days: 7,
-      highlights: ['Tour Eiffel', 'Museu do Louvre', 'Cruzeiro no Sena'],
-      img: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=1a2f3f4a0d4b7b8f6b2a3c7b2d9e5c9f'
-    },
-    {
-      id: 'rio-1',
-      title: 'Rio Essencial',
-      region: 'América do Sul',
-      country: 'Brasil',
-      priceBRL: 2200,
-      days: 4,
-      highlights: ['Cristo Redentor','Pão de Açúcar','Praia de Copacabana'],
-      img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=6e8b2a3f4c8b7d9a5c3e2f6a1b4c5d7e'
-    },
-    {
-      id: 'ny-1',
-      title: 'New York Express',
-      region: 'América do Norte',
-      country: 'Estados Unidos',
-      priceBRL: 7200,
-      days: 5,
-      highlights: ['Times Square','Estátua da Liberdade','Central Park'],
-      img: 'https://images.unsplash.com/photo-1549924231-f129b911e442?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=3f0c4b52d8a9e2b7a1c3d6f4b9e8a7d2'
-    },
-    {
-      id: 'tokyo-1',
-      title: 'Tóquio Moderno',
-      region: 'Ásia',
-      country: 'Japão',
-      priceBRL: 10500,
-      days: 8,
-      highlights: ['Shibuya','Templos','Gastronomia'],
-      img: 'https://images.unsplash.com/photo-1549692520-acc6669e2f0c?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=5b1e2c3d4a5b6c7d8e9f0a1b2c3d4e5f'
-    },
-    {
-      id: 'lisboa-1',
-      title: 'Lisboa Histórica',
-      region: 'Europa',
-      country: 'Portugal',
-      priceBRL: 4900,
-      days: 6,
-      highlights: ['Belém','Alfama','Fado ao vivo'],
-      img: 'https://images.unsplash.com/photo-1508057198894-247b23fe5ade?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=8e7c6b5a4d3c2b1f0a9e8d7c6b5a4c3d'
-    },
-    {
-      id: 'maldivas-1',
-      title: 'Maldivas Luxo',
-      region: 'Oceania',
-      country: 'Maldivas',
-      priceBRL: 16800,
-      days: 7,
-      highlights: ['Bangalô na água','Snorkel','Spa incluso'],
-      img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=2c3b4d5e6f7a8b9c0d1e2f3a4b5c6d7e'
+  <script>
+    /* --------------------------------------------------
+       JAVASCRIPT (Mantido o código limpo e funcional)
+       -------------------------------------------------- */
+    const pacotes = [
+      {
+        id: 'paris-1',
+        title: 'Paris Romântica',
+        region: 'Europa',
+        country: 'França',
+        priceBRL: 8200,
+        days: 7,
+        highlights: ['Tour Eiffel', 'Museu do Louvre', 'Cruzeiro no Sena'],
+        img: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=1a2f3f4a0d4b7b8f6b2a3c7b2d9e5c9f'
+      },
+      {
+        id: 'rio-1',
+        title: 'Rio Essencial',
+        region: 'América do Sul',
+        country: 'Brasil',
+        priceBRL: 2200,
+        days: 4,
+        highlights: ['Cristo Redentor','Pão de Açúcar','Praia de Copacabana'],
+        img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=6e8b2a3f4c8b7d9a5c3e2f6a1b4c5d7e'
+      },
+      {
+        id: 'ny-1',
+        title: 'New York Express',
+        region: 'América do Norte',
+        country: 'Estados Unidos',
+        priceBRL: 7200,
+        days: 5,
+        highlights: ['Times Square','Estátua da Liberdade','Central Park'],
+        img: 'https://images.unsplash.com/photo-1549924231-f129b911e442?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=3f0c4b52d8a9e2b7a1c3d6f4b9e8a7d2'
+      },
+      {
+        id: 'tokyo-1',
+        title: 'Tóquio Moderno',
+        region: 'Ásia',
+        country: 'Japão',
+        priceBRL: 10500,
+        days: 8,
+        highlights: ['Shibuya','Templos','Gastronomia'],
+        img: 'https://images.unsplash.com/photo-1549692520-acc6669e2f0c?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=5b1e2c3d4a5b6c7d8e9f0a1b2c3d4e5f'
+      },
+      {
+        id: 'lisboa-1',
+        title: 'Lisboa Histórica',
+        region: 'Europa',
+        country: 'Portugal',
+        priceBRL: 4900,
+        days: 6,
+        highlights: ['Belém','Alfama','Fado ao vivo'],
+        img: 'https://images.unsplash.com/photo-1508057198894-247b23fe5ade?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=8e7c6b5a4d3c2b1f0a9e8d7c6b5a4c3d'
+      },
+      {
+        id: 'maldivas-1',
+        title: 'Maldivas Luxo',
+        region: 'Oceania',
+        country: 'Maldivas',
+        priceBRL: 16800,
+        days: 7,
+        highlights: ['Bangalô na água','Snorkel','Spa incluso'],
+        img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=2c3b4d5e6f7a8b9c0d1e2f3a4b5c6d7e'
+      }
+    ];
+
+    let currentList = [...pacotes];
+    let reservaSelectedId = null;
+
+    /* --- Utilitários --- */
+    function numberWithCommas(x){
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
-  ];
+    function escapeHtml(s){
+      return s.replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+    function debounce(fn, wait){
+      let t;
+      return function(...a){ clearTimeout(t); t = setTimeout(()=>fn.apply(this,a), wait); }
+    }
 
-  // Estado atual (filtros)
-  let currentList = [...pacotes];
+    /* --- Renderização e Interação --- */
+    function renderCards(){
+      const container = document.getElementById('cards');
+      container.innerHTML = '';
+      
+      const sort = document.getElementById('sortBy').value;
+      let list = [...currentList];
+      if(sort === 'priceAsc') list.sort((a,b)=>a.priceBRL-b.priceBRL);
+      if(sort === 'priceDesc') list.sort((a,b)=>b.priceBRL-a.priceBRL);
+      if(sort === 'daysAsc') list.sort((a,b)=>a.days-b.days);
 
-  // Render inicial
-  document.addEventListener('DOMContentLoaded', () => {
-    renderCards();
-    document.getElementById('searchInput').addEventListener('input', debounce(applyFilters, 300));
-  });
+      const infoSpan = document.querySelector('.controls .count-display');
+      if(infoSpan) infoSpan.textContent = `(${list.length})`;
 
-  function renderCards(){
-    const container = document.getElementById('cards');
-    container.innerHTML = '';
-    // ordenação
-    const sort = document.getElementById('sortBy').value;
-    let list = [...currentList];
-    if(sort === 'priceAsc') list.sort((a,b)=>a.priceBRL-b.priceBRL);
-    if(sort === 'priceDesc') list.sort((a,b)=>b.priceBRL-a.priceBRL);
-    if(sort === 'daysAsc') list.sort((a,b)=>a.days-b.days);
-
-    // contador visível
-    const infoSpan = document.querySelector('.controls strong + span');
-    if(infoSpan) infoSpan.textContent = `(${list.length})`;
-
-    // montar cards
-    list.forEach(pkg => {
-      const div = document.createElement('div');
-      div.className = 'card';
-      div.innerHTML = `
-        <img src="${pkg.img}" alt="${escapeHtml(pkg.title)}">
-        <div class="meta">
-          <div class="tag">${escapeHtml(pkg.country)}</div>
-          <div class="price">R$ ${numberWithCommas(pkg.priceBRL)}</div>
-        </div>
-        <h3>${escapeHtml(pkg.title)}</h3>
-        <p>${escapeHtml(pkg.highlights.slice(0,2).join(' • '))} • ${pkg.days} dias</p>
-        <div class="actions">
-          <div class="pill">${pkg.region}</div>
-          <div style="margin-left:auto;display:flex;gap:8px">
-            <button class="btn secondary" onclick="abrirDetalhes('${pkg.id}')">Ver detalhes</button>
-            <button class="btn" onclick="abrirReservaModal('${pkg.id}')">Reservar</button>
+      list.forEach(pkg => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+          <img src="${pkg.img}" alt="Imagem de ${escapeHtml(pkg.title)}">
+          <div class="meta">
+            <div class="tag">${escapeHtml(pkg.country)}</div>
+            <div class="price">R$ ${numberWithCommas(pkg.priceBRL)}</div>
           </div>
-        </div>
-      `;
-      container.appendChild(div);
-    });
-  }
-
-  /* ---------------------------
-     Filtros / Busca / Utilitários
-     --------------------------- */
-  function applyFilters(){
-    const q = document.getElementById('searchInput').value.trim().toLowerCase();
-    const region = document.getElementById('regionFilter').value;
-    const maxPrice = Number(document.getElementById('maxPrice').value) || Infinity;
-    const maxDays = Number(document.getElementById('maxDays').value) || Infinity;
-
-    currentList = pacotes.filter(p=>{
-      const matchQ = !q || (p.title+ ' ' + p.country + ' ' + p.highlights.join(' ')).toLowerCase().includes(q);
-      const matchRegion = !region || p.region === region;
-      const matchPrice = p.priceBRL <= maxPrice;
-      const matchDays = p.days <= maxDays;
-      return matchQ && matchRegion && matchPrice && matchDays;
-    });
-
-    renderCards();
-  }
-
-  function resetFilters(){
-    document.getElementById('searchInput').value = '';
-    document.getElementById('regionFilter').value = '';
-    document.getElementById('maxPrice').value = '';
-    document.getElementById('maxDays').value = '';
-    document.getElementById('sortBy').value = 'recommended';
-    currentList = [...pacotes];
-    renderCards();
-  }
-
-  function showAll(){ resetFilters(); window.scrollTo({top:document.getElementById('pacotes').offsetTop - 20, behavior:'smooth'}); }
-  function scrollToId(id){ document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'}); }
-
-  /* ---------------------------
-     Modal: detalhes do pacote
-     --------------------------- */
-  function abrirDetalhes(id){
-    const pkg = pacotes.find(p=>p.id===id);
-    if(!pkg) return;
-    document.getElementById('modalTitle').textContent = pkg.title;
-    document.getElementById('modalSub').textContent = `${pkg.country} • ${pkg.region} • ${pkg.days} dias`;
-    const body = document.getElementById('modalBody');
-    body.innerHTML = `
-      <img src="${pkg.img}" alt="${escapeHtml(pkg.title)}" style="width:100%;height:220px;object-fit:cover;border-radius:8px">
-      <div style="display:flex;gap:12px;margin-top:10px;flex-wrap:wrap">
-        <div style="flex:1">
-          <h4 style="margin:8px 0 6px;color:#08324b">O que inclui</h4>
-          <ul>
-            <li>Passagem aérea ida e volta (classe econômica)</li>
-            <li>Hotel 3-4 estrelas (café da manhã incluso)</li>
-            <li>${pkg.highlights.join(', ')}</li>
-            <li>Traslados e suporte local</li>
-          </ul>
-        </div>
-        <div style="width:220px">
-          <div style="padding:12px;border-radius:10px;background:#f3fbff;border:1px solid #e7f8ff">
-            <div style="font-weight:800;color:var(--blue-1);font-size:20px">R$ ${numberWithCommas(pkg.priceBRL)}</div>
-            <div style="margin-top:8px;color:#0b556b">Por pessoa • ${pkg.days} dias</div>
-            <div style="margin-top:12px;display:flex;gap:8px">
+          <h3>${escapeHtml(pkg.title)}</h3>
+          <p>${escapeHtml(pkg.highlights.slice(0,2).join(' • '))} • ${pkg.days} dias</p>
+          <div class="actions">
+            <div class="pill">${pkg.region}</div>
+            <div style="margin-left:auto;display:flex;gap:8px">
+              <button class="btn secondary" onclick="abrirDetalhes('${pkg.id}')">Ver Detalhes</button>
               <button class="btn" onclick="abrirReservaModal('${pkg.id}')">Reservar</button>
-              <button class="btn secondary" onclick="gerarFicha('${pkg.id}')">Gerar ficha</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function applyFilters(){
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      const region = document.getElementById('regionFilter').value;
+      const maxPrice = Number(document.getElementById('maxPrice').value) || Infinity;
+      const maxDays = Number(document.getElementById('maxDays').value) || Infinity;
+
+      currentList = pacotes.filter(p=>{
+        const searchString = (p.title+ ' ' + p.country + ' ' + p.highlights.join(' ')).toLowerCase();
+        const matchQ = !q || searchString.includes(q);
+        const matchRegion = !region || p.region === region;
+        const matchPrice = p.priceBRL <= maxPrice;
+        const matchDays = p.days <= maxDays;
+        return matchQ && matchRegion && matchPrice && matchDays;
+      });
+
+      renderCards();
+    }
+
+    function resetFilters(){
+      document.getElementById('searchInput').value = '';
+      document.getElementById('regionFilter').value = '';
+      document.getElementById('maxPrice').value = '';
+      document.getElementById('maxDays').value = '';
+      document.getElementById('sortBy').value = 'recommended';
+      currentList = [...pacotes];
+      renderCards();
+    }
+
+    function showAll(){
+      resetFilters();
+      window.scrollTo({top:document.getElementById('pacotes').offsetTop - 100, behavior:'smooth'});
+    }
+    function scrollToId(id){
+      document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    /* --- Modal: detalhes do pacote --- */
+    function abrirDetalhes(id){
+      const pkg = pacotes.find(p=>p.id===id);
+      if(!pkg) return;
+      
+      reservaSelectedId = id;
+
+      document.getElementById('modalTitle').textContent = pkg.title;
+      document.getElementById('modalSub').textContent = `${pkg.country} • ${pkg.region} • ${pkg.days} dias`;
+      const body = document.getElementById('modalBody');
+      body.innerHTML = `
+        <img src="${pkg.img}" alt="Imagem de ${escapeHtml(pkg.title)}" style="width:100%;height:300px;object-fit:cover;border-radius:var(--radius-sm)">
+        <div style="display:flex;gap:30px;margin-top:20px;flex-wrap:wrap">
+          <div style="flex:1">
+            <h4 style="margin:8px 0 10px;color:var(--color-primary);font-weight:700">O que o Pacote Inclui</h4>
+            <ul style="list-style:disc;padding-left:25px;margin:0;font-size:16px;color:var(--color-text-secondary)">
+              <li>Passagem aérea ida e volta (classe executiva opcional)</li>
+              <li>Hospedagem 4-5 estrelas (café da manhã e jantar inclusos)</li>
+              <li><strong>Passeios Exclusivos:</strong> ${pkg.highlights.join(', ')}</li>
+              <li>Traslados VIP e suporte local 24h</li>
+            </ul>
+          </div>
+          <div style="width:250px">
+            <div class="modal-detail-card">
+              <div class="price">R$ ${numberWithCommas(pkg.priceBRL)}</div>
+              <div class="info">Por pessoa (a partir de) • ${pkg.days} dias</div>
+              <div class="actions">
+                <button class="btn" onclick="abrirReservaModal('${pkg.id}')">Reservar</button>
+                <button class="btn secondary" onclick="gerarFicha('${pkg.id}')">Gerar Ficha</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    `;
-    showModal('modalBackdrop');
-  }
+      `;
+      showModal('modalBackdrop');
+    }
 
-  function showModal(id){
-    const el = document.getElementById(id);
-    el.classList.add('show');
-    el.setAttribute('aria-hidden','false');
-  }
-  function closeModal(){
-    const el = document.getElementById('modalBackdrop');
-    el.classList.remove('show');
-    el.setAttribute('aria-hidden','true');
-  }
+    function showModal(id){
+      const el = document.getElementById(id);
+      el.classList.add('show');
+      el.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(){
+      const el = document.getElementById('modalBackdrop');
+      el.classList.remove('show');
+      el.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+    }
 
-  /* ---------------------------
-     Reserva (modal formulário)
-     --------------------------- */
-  let reservaSelectedId = null;
-  function abrirReservaModal(id){
-    reservaSelectedId = id;
-    document.getElementById('reservaBackdrop').classList.add('show');
-    document.getElementById('reservaBackdrop').setAttribute('aria-hidden','false');
-  }
-  function closeReserva(){
-    document.getElementById('reservaBackdrop').classList.remove('show');
-    document.getElementById('reservaBackdrop').setAttribute('aria-hidden','true');
-    document.getElementById('reservaForm').reset();
-  }
-  function confirmarReserva(ev){
-    ev.preventDefault();
-    const pkg = pacotes.find(p => p.id === reservaSelectedId);
-    if(!pkg){ alert('Selecione um pacote primeiro.'); return; }
-    const nome = document.getElementById('resNome').value;
-    const email = document.getElementById('resEmail').value;
-    const passengers = Number(document.getElementById('resPassengers').value) || 1;
+    /* --- Reserva (modal formulário) --- */
+    function abrirReservaModal(id){
+      const pkg = pacotes.find(p=>p.id===id);
+      if(!pkg) return;
 
-    // Simulação: mostrar resumo e salvar localmente (ex.: localStorage)
-    const reserva = {
-      pacote: pkg.title,
-      id: pkg.id,
-      nome, email, passengers,
-      total: pkg.priceBRL * passengers,
-      date: new Date().toISOString()
-    };
-    // Guardar reserva simulada
-    const atuais = JSON.parse(localStorage.getItem('reservas_demo') || '[]');
-    atuais.push(reserva);
-    localStorage.setItem('reservas_demo', JSON.stringify(atuais));
+      reservaSelectedId = id;
+      document.getElementById('reservaPacoteNome').textContent = pkg.title;
+      document.getElementById('reservaBackdrop').classList.add('show');
+      document.getElementById('reservaBackdrop').setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
 
-    closeReserva();
-    closeModal();
-    alert(`Reserva simulada registrada!\nPacote: ${pkg.title}\nNome: ${nome}\nTotal: R$ ${numberWithCommas(reserva.total)}\n(Confira no localStorage 'reservas_demo')`);
-  }
+    function closeReserva(){
+      document.getElementById('reservaBackdrop').classList.remove('show');
+      document.getElementById('reservaBackdrop').setAttribute('aria-hidden','true');
+      document.getElementById('reservaForm').reset();
+      document.body.style.overflow = '';
+    }
 
-  function abrirReserva(){ // botão do modal para abrir formulário
-    closeModal();
-    abrirReservaModal(reservaSelectedId || pacotes[0].id);
-  }
+    function confirmarReserva(ev){
+      ev.preventDefault();
+      const pkg = pacotes.find(p => p.id === reservaSelectedId);
+      if(!pkg){ alert('Erro: Pacote não selecionado.'); return; }
+      
+      const nome = document.getElementById('resNome').value;
+      const email = document.getElementById('resEmail').value;
+      const passengers = Number(document.getElementById('resPassengers').value) || 1;
 
-  /* ---------------------------
-     Geração de "ficha" simples (download de texto)
-     --------------------------- */
-  function gerarFicha(id){
-    const pkg = pacotes.find(p=>p.id===id);
-    if(!pkg) return;
-    const content = `
-Ficha do pacote: ${pkg.title}
+      const reserva = {
+        pacote: pkg.title,
+        id: pkg.id,
+        nome, email, passengers,
+        total: pkg.priceBRL * passengers,
+        date: new Date().toISOString()
+      };
+      
+      const atuais = JSON.parse(localStorage.getItem('reservas_demo') || '[]');
+      atuais.push(reserva);
+      localStorage.setItem('reservas_demo', JSON.stringify(atuais));
+
+      closeReserva();
+      closeModal();
+      alert(`Reserva Premium registrada com sucesso!\n\nPacote: ${pkg.title}\nNome: ${nome}\nTotal Estimado: R$ ${numberWithCommas(reserva.total)}\n\n(Simulação: dados salvos no localStorage 'reservas_demo')`);
+    }
+
+    function abrirReserva(){
+      closeModal();
+      if(reservaSelectedId){
+        abrirReservaModal(reservaSelectedId);
+      } else {
+        alert('Erro: Nenhum pacote selecionado.');
+      }
+    }
+
+    /* --- Geração de "ficha" simples (download de texto) --- */
+    function gerarFicha(id){
+      const pkg = pacotes.find(p=>p.id===id);
+      if(!pkg) return;
+      const content = `
+Ficha do Pacote Premium: ${pkg.title}
 
 Destino: ${pkg.country} (${pkg.region})
 Duração: ${pkg.days} dias
-Preço por pessoa: R$ ${numberWithCommas(pkg.priceBRL)}
+Preço por pessoa (a partir de): R$ ${numberWithCommas(pkg.priceBRL)}
 
-Destaques:
+Destaques do Itinerário:
 - ${pkg.highlights.join('\n- ')}
 
-(Protótipo - Alugar Viagens)
-    `;
-    const blob = new Blob([content], {type: 'text/plain;charset=utf-8'});
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = `${pkg.id}_ficha.txt`;
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-  }
-
-  /* ---------------------------
-     Pequenas utilitárias
-     --------------------------- */
-  function numberWithCommas(x){ return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
-  function escapeHtml(s){ return s.replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-
-  // debounce
-  function debounce(fn, wait){
-    let t;
-    return function(...a){ clearTimeout(t); t = setTimeout(()=>fn.apply(this,a), wait); }
-  }
-
-  // abrir contato (simples)
-  function openContato(){
-    alert('Suporte: suporte@alugarviagens.ex\nTel: (11) 4000-0000\nEste é um protótipo funcional para apresentação escolar.');
-  }
-
-  // gerar ficha do primeiro pacote se quiser reservar sem abrir modal
-  function abrirReservaModalDirect(id){
-    reservaSelectedId = id;
-    abrirReservaModal(id);
-  }
-
-  // Accessibility: fechar modal com ESC
-  document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape'){
-      closeModal();
-      closeReserva();
+(Protótipo de Alta Fidelidade - Alugar Viagens)
+      `;
+      const blob = new Blob([content], {type: 'text/plain;charset=utf-8'});
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `${pkg.id}_ficha_premium.txt`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      alert(`Ficha do pacote ${pkg.title} gerada e baixada como ${link.download}`);
     }
-  });
 
-  // Expor contar (para o texto dinâmico da página)
-  Object.defineProperty(window, '{{displayCount}}', {get:()=>currentList.length});
-</script>
+    /* --- Inicialização --- */
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCards();
+      
+      document.getElementById('searchInput').addEventListener('input', debounce(applyFilters, 300));
+      document.getElementById('reservaForm').addEventListener('submit', confirmarReserva);
+
+      Object.defineProperty(window, '{{displayCount}}', {get:()=>currentList.length});
+    });
+
+    // Accessibility: fechar modal com ESC
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape'){
+        closeModal();
+        closeReserva();
+      }
+    });
+
+    // abrir contato (simples)
+    function openContato(){
+      alert('Atendimento Premium: suporte@alugarviagens.ex\nTelefone: (11) 4000-0000\nEste é um protótipo de alta fidelidade para apresentação acadêmica.');
+    }
+
+    function abrirReservaModalDirect(id){
+      abrirReservaModal(id);
+    }
+  </script>
 </body>
 </html>
